@@ -7,34 +7,7 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/locationTitle2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="284dp"
-        android:layout_marginEnd="16dp"
-        android:text="Desired Cuisine:"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/locationTitle3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="448dp"
-        android:layout_marginEnd="16dp"
-        android:text="Desired Time to Eat:"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.522"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/appName"
+        android:id="@+id/letSwipeName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -47,55 +20,97 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/locationTitle"
+        android:id="@+id/locationName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="48dp"
         android:layout_marginEnd="16dp"
         android:text="Location (city/zipcode):"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.536"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/letSwipeName" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/location"
         android:layout_width="311dp"
         android:layout_height="49dp"
         android:ems="10"
         android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="28dp"
-        tools:layout_editor_absoluteY="165dp" />
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="56dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/locationName" />
+
+    <ImageView
+        android:id="@+id/locationPin"
+        android:layout_width="45dp"
+        android:layout_height="48dp"
+        app:srcCompat="@drawable/ic_baseline_location_on_24"
+        tools:layout_editor_absoluteX="340dp"
+        tools:layout_editor_absoluteY="166dp"
+        app:layout_constraintStart_toEndOf="@id/location"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintTop_toBottomOf="@id/locationName" />
+
+    <TextView
+        android:id="@+id/desiredCuisineName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="16dp"
+        android:text="Desired Cuisine:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/location" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/desiredCuisine"
         android:layout_width="311dp"
         android:layout_height="49dp"
         android:background="#504444"
         android:backgroundTint="#E3E0E0"
         android:ems="10"
         android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="50dp"
-        tools:layout_editor_absoluteY="329dp" />
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/desiredCuisineName" />
+
+    <TextView
+        android:id="@+id/desiredTimeName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="16dp"
+        android:text="Desired Time to Eat:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/desiredCuisine" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName3"
+        android:id="@+id/desiredTime"
         android:layout_width="311dp"
         android:layout_height="49dp"
         android:background="#D5CDCD"
         android:backgroundTint="#E3E0E0"
         android:ems="10"
         android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="50dp"
-        tools:layout_editor_absoluteY="493dp" />
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/desiredTimeName" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="45dp"
-        android:layout_height="48dp"
-        app:srcCompat="@drawable/ic_baseline_location_on_24"
-        tools:layout_editor_absoluteX="340dp"
-        tools:layout_editor_absoluteY="166dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
