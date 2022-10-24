@@ -56,10 +56,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cuisine"
-        android:scaleType="center" />
+        app:layout_constraintBottom_toTopOf="@id/cancelButton"
+        android:scaleType="fitXY" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/cancelButton"
         android:layout_width="60dp"
         android:layout_height="56dp"
         android:background="#00F4F3F3"
@@ -73,7 +74,7 @@
         app:layout_constraintTop_toBottomOf="@id/imageView2"/>
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/checkButton"
         android:layout_width="53dp"
         android:layout_height="64dp"
         android:layout_marginStart="16dp"
