@@ -11,7 +11,7 @@ import com.example.swipetoeat.model.Restaurant
 
 class FindRestaurantActivity : AppCompatActivity(), RestaurantCardAdapter.OnItemClickListener{
     private lateinit var binding: ActivityFindRestaurantBinding
-    // Creates layout for 2nd page and makes it scrollable
+    // Creates layout for find restaurant page and makes it scrollable
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityFindRestaurantBinding.inflate(layoutInflater)
