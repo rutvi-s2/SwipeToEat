@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">SwipeToEat</string>
+    <string name="restaurant_grid_image">restaurant grid image</string>
 </resources>
