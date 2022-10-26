@@ -2,25 +2,26 @@ package com.example.swipetoeat
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
-import com.example.swipetoeat.MainActivity
-import com.example.swipetoeat.databinding.ActivityFindRestaurantBinding
-
 import com.example.swipetoeat.adapter.RestaurantCardAdapter
+import com.example.swipetoeat.databinding.ActivityFindRestaurantBinding
 import com.example.swipetoeat.model.Restaurant
+
 
 class FindRestaurantActivity : AppCompatActivity(), RestaurantCardAdapter.OnItemClickListener{
     private lateinit var binding: ActivityFindRestaurantBinding
+    private val mWebsiteEditText: EditText? = null
     // Creates layout for find restaurant page and makes it scrollable
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityFindRestaurantBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.recyclerView.adapter = RestaurantCardAdapter(this)
+        binding.gridRecyclerView.adapter = RestaurantCardAdapter(this)
 
         // Specify fixed size to improve performance
-        binding.recyclerView.setHasFixedSize(true)
+        binding.gridRecyclerView.setHasFixedSize(true)
         // Intent takes user back to the add reviews page
 //        val firstPage = binding.addMovieBtn
 //        firstPage.setOnClickListener {

@@ -9,5 +9,5 @@ data class Restaurant(
     val imageResourceBitmap: Bitmap,
     val name: String,
     val distance: String,
-    val closes: String
+    val hours: String
 )

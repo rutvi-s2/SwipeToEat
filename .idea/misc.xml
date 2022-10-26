@@ -4,11 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/raque/AndroidStudioProjects/SwipeToEat/app/src/main/res/layout/activity3_main.xml" value="0.24003623188405798" />
-        <entry key="..\:/Users/raque/AndroidStudioProjects/SwipeToEat/app/src/main/res/layout/activity_find_restaurant.xml" value="0.13179347826086957" />
+        <entry key="..\:/Users/raque/AndroidStudioProjects/SwipeToEat/app/src/main/res/layout/activity_find_restaurant.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/raque/AndroidStudioProjects/SwipeToEat/app/src/main/res/layout/activity_main.xml" value="0.24003623188405798" />
         <entry key="..\:/Users/raque/AndroidStudioProjects/SwipeToEat/app/src/main/res/layout/activity_swipe.xml" value="0.13179347826086957" />
+        <entry key="..\:/Users/raque/AndroidStudioProjects/SwipeToEat/app/src/main/res/layout/activity_yelp.xml" value="0.13179347826086957" />
         <entry key="..\:/Users/raque/AndroidStudioProjects/SwipeToEat/app/src/main/res/layout/find_restaurant.xml" value="0.24003623188405798" />
-        <entry key="..\:/Users/raque/AndroidStudioProjects/SwipeToEat/app/src/main/res/layout/restaurant_grid_item.xml" value="0.24003623188405798" />
+        <entry key="..\:/Users/raque/AndroidStudioProjects/SwipeToEat/app/src/main/res/layout/restaurant_grid_item.xml" value="0.11003236245954692" />
       </map>
     </option>
   </component>
