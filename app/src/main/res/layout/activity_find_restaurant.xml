@@ -15,22 +15,34 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/grid_recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="661dp"
-            android:layout_marginTop="70dp"
+            android:layout_height="626dp"
+            android:layout_marginTop="107dp"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="@id/textView"
             app:spanCount="1" />
+
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="362dp"
+            android:layout_height="53dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="648dp"
+            android:gravity="center"
+            android:text="Find your Restaurant..."
+            android:textSize="34sp" />
+
+        <Button
+            android:id="@+id/randomly_generate_button"
+            android:layout_width="329dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="39dp"
+            android:layout_marginTop="57dp"
+            android:text="Randomly Generate Restaurant"
+            app:layout_constraintBottom_toBottomOf="@id/textView"
+            app:layout_constraintStart_toStartOf="parent" />
     </FrameLayout>
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="362dp"
-        android:layout_height="53dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="648dp"
-        android:text="Find your Restaurant..."
-        android:textSize="34sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

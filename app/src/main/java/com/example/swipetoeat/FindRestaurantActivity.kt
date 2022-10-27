@@ -2,9 +2,12 @@ package com.example.swipetoeat
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import com.example.swipetoeat.adapter.RestaurantCardAdapter
+import com.example.swipetoeat.data.DataSource
 import com.example.swipetoeat.databinding.ActivityFindRestaurantBinding
 import com.example.swipetoeat.model.Restaurant
 
@@ -27,6 +30,12 @@ class FindRestaurantActivity : AppCompatActivity(), RestaurantCardAdapter.OnItem
 //        firstPage.setOnClickListener {
 //            val intent = Intent(this, MainActivity::class.java)
 //            startActivity(intent)
+//        }
+
+        // TODO: when randomly generate button is clicked, we choose a restaurant for the user
+//        val randomlyGenerate = findViewById<Button>(R.id.randomly_generate_button)
+//        randomlyGenerate.setOnClickListener {
+//
 //        }
 
     }
