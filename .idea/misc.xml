@@ -4,7 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_swipe.xml" value="0.22609845589900368" />
+        <entry key="app/src/main/res/layout/activity_swipe.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/item_koloda.xml" value="0.1" />
       </map>
     </option>
   </component>
