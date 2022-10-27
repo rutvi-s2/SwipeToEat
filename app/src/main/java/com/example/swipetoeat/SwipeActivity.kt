@@ -49,7 +49,7 @@ class SwipeActivity : AppCompatActivity() {
                     imageResourceBitmap,
                     "Casa de Mariscos",
                     "3 miles",
-                    "5:00 pm"
+                    "10:00am - 5:00pm"
 //                    editText.text.toString(),
 //                    reviewText.text.toString(),
 //                    ratingNumber

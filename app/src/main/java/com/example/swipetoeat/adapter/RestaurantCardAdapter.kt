@@ -3,14 +3,12 @@ package com.example.swipetoeat.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.swipetoeat.R
-import com.example.swipetoeat.data.DataSource.restaurants
+import com.example.swipetoeat.data.DataSource
 import com.example.swipetoeat.model.Restaurant
-import javax.sql.DataSource
 
 class RestaurantCardAdapter (
     private val listener: OnItemClickListener
@@ -18,7 +16,8 @@ class RestaurantCardAdapter (
 
 
     // initialize the data using the restaurants List found in DataSource
-    private var restaurants: List<Restaurant> = com.example.swipetoeat.data.DataSource.restaurants
+    private var restaurants: List<Restaurant> = DataSource.restaurants
+
     /**
      * Initialize view elements
      */
@@ -27,6 +26,8 @@ class RestaurantCardAdapter (
         // declare and initialize all of the bunny list item UI components
         val restaurantImageView: ImageView = view!!.findViewById(R.id.restaurant_grid_image)
         val restaurantNameTextView: TextView = view!!.findViewById(R.id.restaurant_grid_name)
+        val restaurantDistanceTextView: TextView = view!!.findViewById(R.id.restaurant_grid_distance)
+        val restaurantHoursTextView: TextView = view!!.findViewById(R.id.restaurant_grid_hours)
 
         // set up the onClick so restaurant card can be clickable in order to view YELP screen
         init {
@@ -59,16 +60,19 @@ class RestaurantCardAdapter (
     }
 
     override fun getItemCount(): Int {
-        // return size of bunnies data set
+        // return size of restaurant data set
         return restaurants.size
     }
 
     override fun onBindViewHolder(holder: RestaurantCardAdapter.RestaurantCardViewHolder, position: Int) {
         //get the data at the current position
-        val movie = restaurants[position]
-        holder.restaurantImageView.setImageBitmap(movie.imageResourceBitmap)
-        //set text for name and age
-        holder.restaurantNameTextView.text = movie.name
+        val restaurant = restaurants[position]
+        holder.restaurantImageView.setImageBitmap(restaurant.imageResourceBitmap)
+        //set text for name, distance, and hours of restaurant
+        holder.restaurantNameTextView.text = restaurant.name
+        holder.restaurantDistanceTextView.text = restaurant.distance
+        holder.restaurantHoursTextView.text = restaurant.hours
+
     }
 
 }
