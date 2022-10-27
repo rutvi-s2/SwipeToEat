@@ -3,11 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_find_restaurant.xml" value="0.2055252075195313" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_swipe.xml" value="0.231927490234375" />
-        <entry key="app/src/main/res/layout/item_koloda.xml" value="0.20441988950276244" />
+        <entry key="..\:/Users/abbyn/AndroidStudioProjects/SwipeToEat/app/src/main/res/layout/activity_find_restaurant.xml" value="0.1" />
+        <entry key="..\:/Users/abbyn/AndroidStudioProjects/SwipeToEat/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/abbyn/AndroidStudioProjects/SwipeToEat/app/src/main/res/layout/activity_swipe.xml" value="0.1" />
+        <entry key="..\:/Users/abbyn/AndroidStudioProjects/SwipeToEat/app/src/main/res/layout/activity_yelp.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/abbyn/AndroidStudioProjects/SwipeToEat/app/src/main/res/layout/item_koloda.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/abbyn/AndroidStudioProjects/SwipeToEat/app/src/main/res/layout/restaurant_grid_item.xml" value="0.17447916666666666" />
+        <entry key="..\:/Users/abbyn/AndroidStudioProjects/SwipeToEat/app/src/main/res/menu/bottom_nav_bar.xml" value="0.2" />
       </map>
     </option>
   </component>

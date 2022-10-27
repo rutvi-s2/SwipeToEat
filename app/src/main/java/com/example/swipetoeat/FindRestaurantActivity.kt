@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.swipetoeat.adapter.RestaurantCardAdapter
 import com.example.swipetoeat.data.DataSource
 import com.example.swipetoeat.databinding.ActivityFindRestaurantBinding
+import com.example.swipetoeat.databinding.ActivitySwipeBinding
 import com.example.swipetoeat.model.Restaurant
 
 
@@ -18,9 +19,26 @@ class FindRestaurantActivity : AppCompatActivity(), RestaurantCardAdapter.OnItem
     // Creates layout for find restaurant page and makes it scrollable
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_find_restaurant)
         binding = ActivityFindRestaurantBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        binding.bottomNavigationBar.setOnItemSelectedListener {
+            when (it.itemId) {
+                // Takes user to the home page
+                R.id.home -> {
+                    startActivity(Intent(this,MainActivity::class.java))
+                }
+                R.id.swipe -> {
+                    startActivity(Intent(this,SwipeActivity::class.java))
+                }
+                R.id.restaurants -> {
+                    startActivity(Intent(this,FindRestaurantActivity::class.java))
+                }
+                else -> {
+                }
+            }
+            true
+        }
         binding.gridRecyclerView.adapter = RestaurantCardAdapter(this)
 
         // Specify fixed size to improve performance
