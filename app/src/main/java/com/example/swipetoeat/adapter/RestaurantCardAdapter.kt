@@ -67,7 +67,8 @@ class RestaurantCardAdapter (
     override fun onBindViewHolder(holder: RestaurantCardAdapter.RestaurantCardViewHolder, position: Int) {
         //get the data at the current position
         val restaurant = restaurants[position]
-        holder.restaurantImageView.setImageBitmap(restaurant.imageResourceBitmap)
+//        holder.restaurantImageView.setImageBitmap(restaurant.imageResourceBitmap)
+        holder.restaurantImageView.setImageResource(restaurant.imageResourceBitmap)
         //set text for name, distance, and hours of restaurant
         holder.restaurantNameTextView.text = restaurant.name
         holder.restaurantDistanceTextView.text = restaurant.distance
