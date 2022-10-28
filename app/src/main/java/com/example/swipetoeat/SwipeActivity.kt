@@ -1,17 +1,14 @@
 package com.example.swipetoeat
 
-import com.example.swipetoeat.SwipeAdapter
 import com.yalantis.library.Koloda
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.swipetoeat.R
 import java.util.ArrayList
 import android.widget.ImageButton
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import com.example.swipetoeat.data.DataSource
-import com.example.swipetoeat.databinding.ActivityMainBinding
 import com.example.swipetoeat.databinding.ActivitySwipeBinding
 import com.example.swipetoeat.model.Restaurant
 
@@ -20,7 +17,7 @@ class SwipeActivity : AppCompatActivity() {
     private lateinit var adapter: SwipeAdapter
     private lateinit var list: List<Int>
     private lateinit var koloda: Koloda
-    lateinit var imageResourceBitmap: Bitmap
+//    lateinit var imageResourceBitmap: Bitmap
     private lateinit var binding : ActivitySwipeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,7 +48,7 @@ class SwipeActivity : AppCompatActivity() {
         adapter = SwipeAdapter(this, list)
         koloda.adapter = adapter
 
-        imageResourceBitmap = BitmapFactory.decodeResource(resources, R.drawable.casa_de_mariscos_enchiladas);
+//        imageResourceBitmap = BitmapFactory.decodeResource(resources, R.drawable.casa_de_mariscos_enchiladas);
 
         // Moves the user to back to the home page
 //        val homePage = findViewById<ImageButton>(R.id.home_button)
@@ -67,18 +64,18 @@ class SwipeActivity : AppCompatActivity() {
         restaurantsPage.setOnClickListener {
             // temp values to test RestaurantCardAdapter
             // Adds restaurant user has swiped right on to the list
-            val restaurants: MutableList<Restaurant> = DataSource.restaurants
-            restaurants.add(
-                Restaurant(
-                    imageResourceBitmap,
-                    "Casa de Mariscos",
-                    "3 miles",
-                    "10:00am - 5:00pm"
-//                    editText.text.toString(),
-//                    reviewText.text.toString(),
-//                    ratingNumber
-                )
-            )
+//            val restaurants: MutableList<Restaurant> = DataSource.restaurants
+//            restaurants.add(
+//                Restaurant(
+//                    imageResourceBitmap,
+//                    "Casa de Mariscos",
+//                    "3 miles",
+//                    "10:00am - 5:00pm"
+////                    editText.text.toString(),
+////                    reviewText.text.toString(),
+////                    ratingNumber
+//                )
+//            )
             val intent = Intent(this, FindRestaurantActivity::class.java)
             startActivity(intent)
         }
