@@ -53,12 +53,6 @@ class SwipeActivity : AppCompatActivity() {
 
         imageResourceBitmap = BitmapFactory.decodeResource(resources, R.drawable.casa_de_mariscos_enchiladas);
 
-        // Moves the user to back to the home page
-//        val homePage = findViewById<ImageButton>(R.id.home_button)
-//        homePage.setOnClickListener {
-//            val intent = Intent(this,MainActivity::class.java)
-//            startActivity(intent)
-//        }
 
 
 
@@ -83,28 +77,6 @@ class SwipeActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        // Navigation bar
-//        binding = ActivitySwipeBinding.inflate(layoutInflater)
-//        binding.bottomNavigationBar.setOnItemSelectedListener {
-//            when (it.itemId) {
-//                // Takes user to the home page
-//                R.id.home -> {
-//                    // val homePage = Intent(this,MainActivity::class.java)
-//                    startActivity(Intent(this,MainActivity::class.java))
-//                }
-//                R.id.swipe -> {
-//                    // val swipePage = Intent(this,SwipeActivity::class.java)
-//                    startActivity(Intent(this,SwipeActivity::class.java))
-//                }
-//                R.id.restaurants -> {
-//
-//                    startActivity(Intent(this,FindRestaurantActivity::class.java))
-//                }
-//                else -> {
-//                }
-//            }
-//            true
-//        }
     }
 
 }
