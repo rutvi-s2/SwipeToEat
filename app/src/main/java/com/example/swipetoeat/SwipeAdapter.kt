@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.view.LayoutInflater
 import android.view.View
 
-class SwipeAdapter(private val context: Context, private val list: List<Int>) : BaseAdapter() {
+class SwipeAdapter(private val context: Context, private val list: MutableList<YelpRestaurant>) : BaseAdapter() {
     override fun getCount(): Int {
         return 20
     }

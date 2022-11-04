@@ -17,7 +17,7 @@ import com.yalantis.library.KolodaListener
 
 class SwipeActivity : AppCompatActivity() {
     private lateinit var adapter: SwipeAdapter
-    private lateinit var list: List<Int>
+    private lateinit var list: MutableList<YelpRestaurant>
     private lateinit var koloda: Koloda
 //    lateinit var imageResourceBitmap: Bitmap
     private lateinit var binding : ActivitySwipeBinding
@@ -46,7 +46,7 @@ class SwipeActivity : AppCompatActivity() {
         }
         koloda = findViewById(R.id.koloda)
 
-        list = ArrayList()
+        list = DataSource.restaurants
         adapter = SwipeAdapter(this, list)
         koloda.adapter = adapter
 

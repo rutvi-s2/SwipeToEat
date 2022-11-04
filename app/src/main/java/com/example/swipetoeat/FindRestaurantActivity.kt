@@ -60,11 +60,12 @@ class FindRestaurantActivity : AppCompatActivity(), RestaurantCardAdapter.OnItem
 
     // when RestaurantCardAdapter is clicked, send the data over the intent and start the intent
     // for yelp screen
-    override fun onItemClick(position: Int, restaurants: List<Restaurant>) {
+    override fun onItemClick(position: Int, restaurants: List<YelpRestaurant>) {
         val intent = Intent(this,YelpActivity::class.java)
         intent.putExtra("restaurant_name", restaurants[position].name)
 //        intent.putExtra("movie_review", movies[position].review)
 //        intent.putExtra("movie_rating", movies[position].rating)
         startActivity(intent)
     }
+
 }

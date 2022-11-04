@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.swipetoeat.R
+import com.example.swipetoeat.YelpRestaurant
 import com.example.swipetoeat.data.DataSource
 import com.example.swipetoeat.model.Restaurant
 
@@ -16,7 +17,7 @@ class RestaurantCardAdapter (
 
 
     // initialize the data using the restaurants List found in DataSource
-    private var restaurants: List<Restaurant> = DataSource.restaurants
+    private var restaurants: List<YelpRestaurant> = DataSource.restaurants
 
     /**
      * Initialize view elements
@@ -46,7 +47,7 @@ class RestaurantCardAdapter (
 
     // declare the onItemClick to be initialized in MainActivity2.kt
     interface OnItemClickListener {
-        fun onItemClick(position: Int, restaurants: List<Restaurant>)
+        fun onItemClick(position: Int, restaurants: List<YelpRestaurant>)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RestaurantCardAdapter.RestaurantCardViewHolder {
@@ -68,11 +69,11 @@ class RestaurantCardAdapter (
         //get the data at the current position
         val restaurant = restaurants[position]
 //        holder.restaurantImageView.setImageBitmap(restaurant.imageResourceBitmap)
-        holder.restaurantImageView.setImageResource(restaurant.imageResourceBitmap)
+//        holder.restaurantImageView.setImageResource(restaurant.imageResourceBitmap)
         //set text for name, distance, and hours of restaurant
         holder.restaurantNameTextView.text = restaurant.name
-        holder.restaurantDistanceTextView.text = restaurant.distance
-        holder.restaurantHoursTextView.text = restaurant.hours
+//        holder.restaurantDistanceTextView.text = restaurant.distance
+//        holder.restaurantHoursTextView.text = restaurant.hours
 
     }
 
