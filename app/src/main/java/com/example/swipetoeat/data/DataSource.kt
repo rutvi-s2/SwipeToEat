@@ -17,7 +17,8 @@ object DataSource {
             R.drawable.casa_de_mariscos_enchiladas,
             "Casa de Marsicos",
             "3 miles",
-            "10:00am - 5:00pm"
+            "10:00am - 5:00pm",
+            "image url"
 //                    editText.text.toString(),
 //                    reviewText.text.toString(),
 //                    ratingNumber

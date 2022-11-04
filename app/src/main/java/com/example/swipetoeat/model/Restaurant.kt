@@ -11,5 +11,6 @@ data class Restaurant(
 //    val imageResourceBitmap: Bitmap,
     val name: String,
     val distance: String,
-    val hours: String
+    val hours: String,
+    val imageUrl: String
 )

@@ -24,6 +24,10 @@ class MainActivity : AppCompatActivity() {
                     startActivity(Intent(this,MainActivity::class.java))
                 }
                 R.id.swipe -> {
+                    val location = R.id.location.toString()
+                    val intent = Intent(this, YelpActivity::class.java)
+                    intent.putExtra("location", location)
+                    startActivity(intent)
                     startActivity(Intent(this,SwipeActivity::class.java))
                 }
                 R.id.restaurants -> {
@@ -34,6 +38,13 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
+
+        // Intent takes user back to the add reviews page
+//        val firstPage = binding.addMovieBtn
+//        firstPage.setOnClickListener {
+//            val intent = Intent(this, MainActivity::class.java)
+//            startActivity(intent)
+//        }
     }
 
 
