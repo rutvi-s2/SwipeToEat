@@ -1,17 +1,23 @@
 package com.example.swipetoeat.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import com.example.swipetoeat.R
 import com.example.swipetoeat.YelpRestaurant
 import com.example.swipetoeat.data.DataSource
 import com.example.swipetoeat.model.Restaurant
 
 class RestaurantCardAdapter (
+    private val context: Context,
     private val listener: OnItemClickListener
 ): RecyclerView.Adapter<RestaurantCardAdapter.RestaurantCardViewHolder>() {
 
@@ -72,6 +78,14 @@ class RestaurantCardAdapter (
 //        holder.restaurantImageView.setImageResource(restaurant.imageResourceBitmap)
         //set text for name, distance, and hours of restaurant
         holder.restaurantNameTextView.text = restaurant.name
+        //show rating for now
+        holder.restaurantDistanceTextView.text = restaurant.displayDistance()
+        holder.restaurantHoursTextView.text = restaurant.location.address
+        Glide.with(context).load(restaurant.imageUrl).apply(
+            RequestOptions().transforms(
+                CenterCrop(), RoundedCorners(20)
+        )).into(holder.restaurantImageView)
+
 //        holder.restaurantDistanceTextView.text = restaurant.distance
 //        holder.restaurantHoursTextView.text = restaurant.hours
 

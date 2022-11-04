@@ -39,7 +39,7 @@ class FindRestaurantActivity : AppCompatActivity(), RestaurantCardAdapter.OnItem
             }
             true
         }
-        binding.gridRecyclerView.adapter = RestaurantCardAdapter(this)
+        binding.gridRecyclerView.adapter = RestaurantCardAdapter(this, this)
 
         // Specify fixed size to improve performance
         binding.gridRecyclerView.setHasFixedSize(true)
