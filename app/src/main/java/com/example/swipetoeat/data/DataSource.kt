@@ -26,5 +26,5 @@ object DataSource {
 //        )
     )
 
-    var cuisines: MutableList<YelpCategory> = mutableListOf()
+    var cuisines: MutableList<String> = mutableListOf()
 }

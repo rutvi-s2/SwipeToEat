@@ -35,12 +35,12 @@ class MainActivity : AppCompatActivity()  {
 
 
 
-        val cuisines: MutableList<YelpCategory> = DataSource.cuisines
+        val cuisines: MutableList<String> = DataSource.cuisines
 
         val retrofit = Retrofit.Builder().baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create()).build()
         val yelpService = retrofit.create(YelpService::class.java)
-        yelpService.searchCuisines("Bearer $API_KEY", "indpak").enqueue(object : Callback<YelpSearchResultCuisine> {
+        yelpService.searchCuisines("Bearer $API_KEY").enqueue(object : Callback<YelpSearchResultCuisine> {
             override fun onResponse(call: Call<YelpSearchResultCuisine>, response: Response<YelpSearchResultCuisine>) {
                 Log.i(TAG, "onResponse $response")
                 val body = response.body()
@@ -48,8 +48,9 @@ class MainActivity : AppCompatActivity()  {
                     Log.w(TAG, "Did not receive valid response body from Yelp API ... exit")
                     return
                 }
-                cuisines.addAll(body.cuisines)
+                cuisines.addAll(body.populateCuisines())
                 DataSource.cuisines = cuisines
+                Log.d("cuisinesList", DataSource.cuisines.toString())
             }
 
             override fun onFailure(call: Call<YelpSearchResultCuisine>, t: Throwable) {

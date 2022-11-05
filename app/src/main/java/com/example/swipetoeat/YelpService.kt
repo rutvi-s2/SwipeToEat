@@ -13,9 +13,9 @@ public interface YelpService {
         @Query("categories") restaurantCategory: String,
         @Query("location") location:String) : Call<YelpSearchResult>
 
-    @GET("categories/{alias}")
+    @GET("categories")
     fun searchCuisines(
-        @Header("Authorization") authHeader: String,
-        @Path("alias") alias: String) : Call<YelpSearchResultCuisine>
+        @Header("Authorization") authHeader: String) : Call<YelpSearchResultCuisine>
+//        @Path("alias") alias: String) : Call<YelpSearchResultCuisine>
 
 }
