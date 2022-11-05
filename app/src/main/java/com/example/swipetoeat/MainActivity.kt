@@ -1,17 +1,13 @@
 package com.example.swipetoeat
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.content.Intent
+import android.os.Bundle
+import android.provider.ContactsContract
 import android.util.Log
-import android.view.View
 import android.widget.*
-import androidx.core.content.ContextCompat.startActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.example.swipetoeat.data.DataSource
-import com.example.swipetoeat.data.DataSource.cuisines
-import com.example.swipetoeat.data.DataSource.restaurants
 import com.example.swipetoeat.databinding.ActivityMainBinding
-import com.example.swipetoeat.model.Restaurant
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -61,13 +57,12 @@ class MainActivity : AppCompatActivity()  {
 
         // Create an ArrayAdapter using the string array and a default spinner layout
 //        ArrayAdapter<YelpCategory>() adapter_category = new ArrayAdapter<YelpCategory>(this, android.R.layout.simple_spinner_item, cuisines)
-
-        ArrayAdapter.createFromResource(
+        var cuisineAdapter: ArrayAdapter<String> = ArrayAdapter<String>(
             this,
-            R.array.languages,
-            android.R.layout.simple_spinner_item
-//            cuisines
-        ).also { adapter ->
+            android.R.layout.simple_spinner_item,
+            DataSource.cuisines
+        )
+        cuisineAdapter.also { adapter ->
             // Specify the layout to use when the list of choices appears
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             // Apply the adapter to the spinner

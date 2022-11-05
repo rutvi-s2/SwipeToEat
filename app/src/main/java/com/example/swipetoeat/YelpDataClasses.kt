@@ -41,7 +41,7 @@ data class YelpRestaurant(
 
 data class YelpCategory(
     val title:String,
-    val parentAliases: List<String>
+    @SerializedName("parent_aliases") val parentAliases: List<String>
 )
 
 
