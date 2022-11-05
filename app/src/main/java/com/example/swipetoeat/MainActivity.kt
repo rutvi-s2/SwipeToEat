@@ -2,10 +2,14 @@ package com.example.swipetoeat
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ImageButton
 import android.content.Intent
 import android.util.Log
+import android.view.View
+import android.widget.*
+import androidx.core.content.ContextCompat.startActivity
 import com.example.swipetoeat.data.DataSource
+import com.example.swipetoeat.data.DataSource.cuisines
+import com.example.swipetoeat.data.DataSource.restaurants
 import com.example.swipetoeat.databinding.ActivityMainBinding
 import com.example.swipetoeat.model.Restaurant
 import retrofit2.Call
@@ -14,41 +18,107 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+
 //SwipeToEat
 private const val TAG = "MainActivity"
 private const val BASE_URL = "https://api.yelp.com/v3/"
-private const val API_KEY = "DaqKYV7ZnhMBzLmhY_foH30uyNlsU8Kg2XyUGi0Gb5C5vOVBDbzq71AiYaOPmnSKBUi60QBqr_kiHvZPjrp6dPxQ87bIghKoZeWtCtZongAIBnFUUf1KM0GvaZZkY3Yx"
-class MainActivity : AppCompatActivity() {
+private const val API_KEY = "u0xY7xJPFNwzMdqfDLljz3N1pbhesJ7WEFt8exp9A0-G8mMDEj2DJjCY6u4RWdly7zs1GbYiJ4oaIfjgOAKdSyC0qhw_zexcKTp1hCaaAfhLiE_tuRr2ioPmEfliY3Yx"
+class MainActivity : AppCompatActivity()  {
     private lateinit var binding : ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val restaurants: MutableList<YelpRestaurant> = DataSource.restaurants
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+
+
+        val cuisines: MutableList<YelpCategory> = DataSource.cuisines
 
         val retrofit = Retrofit.Builder().baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create()).build()
         val yelpService = retrofit.create(YelpService::class.java)
-        yelpService.searchRestaurants("Bearer $API_KEY","indpak", "Austin").enqueue(object : Callback<YelpSearchResult> {
-            override fun onResponse(call: Call<YelpSearchResult>, response: Response<YelpSearchResult>) {
+        yelpService.searchCuisines("Bearer $API_KEY", "indpak").enqueue(object : Callback<YelpSearchResultCuisine> {
+            override fun onResponse(call: Call<YelpSearchResultCuisine>, response: Response<YelpSearchResultCuisine>) {
                 Log.i(TAG, "onResponse $response")
                 val body = response.body()
                 if (body == null) {
                     Log.w(TAG, "Did not receive valid response body from Yelp API ... exit")
                     return
                 }
-                restaurants.addAll(body.restaurants)
-                DataSource.restaurants = restaurants
+                cuisines.addAll(body.cuisines)
+                DataSource.cuisines = cuisines
             }
 
-            override fun onFailure(call: Call<YelpSearchResult>, t: Throwable) {
+            override fun onFailure(call: Call<YelpSearchResultCuisine>, t: Throwable) {
                 Log.i(TAG, "onFailure $t")
             }
         })
+
+
+        // Create an ArrayAdapter using the string array and a default spinner layout
+//        ArrayAdapter<YelpCategory>() adapter_category = new ArrayAdapter<YelpCategory>(this, android.R.layout.simple_spinner_item, cuisines)
+
+        ArrayAdapter.createFromResource(
+            this,
+            R.array.languages,
+            android.R.layout.simple_spinner_item
+//            cuisines
+        ).also { adapter ->
+            // Specify the layout to use when the list of choices appears
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            // Apply the adapter to the spinner
+            binding.desiredCuisineSpinner.adapter = adapter
+        }
+
+
+//        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+//            override fun onNothingSelected(parent: AdapterView<*>?) {
+//
+//            }
+//
+//            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+//
+//            }
+//
+//        }
+
+
+        binding.startSwiping.setOnClickListener {
+
+            // TODO: this is the code that works that populates the restaurant screen. However, it needs to be moved to populate when user swipes right on card
+            // TODO: the below needs to populate the swiping screen depending on user input
+            val restaurants: MutableList<YelpRestaurant> = DataSource.restaurants
+
+            val retrofit = Retrofit.Builder().baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create()).build()
+            val yelpService = retrofit.create(YelpService::class.java)
+            yelpService.searchRestaurants("Bearer $API_KEY","indpak", "Austin").enqueue(object : Callback<YelpSearchResult> {
+                override fun onResponse(call: Call<YelpSearchResult>, response: Response<YelpSearchResult>) {
+                    Log.i(TAG, "onResponse $response")
+                    val body = response.body()
+                    if (body == null) {
+                        Log.w(TAG, "Did not receive valid response body from Yelp API ... exit")
+                        return
+                    }
+                    restaurants.addAll(body.restaurants)
+                    DataSource.restaurants = restaurants
+                }
+
+                override fun onFailure(call: Call<YelpSearchResult>, t: Throwable) {
+                    Log.i(TAG, "onFailure $t")
+                }
+            })
+            // intent to go to start swiping page
+            val intent = Intent(this, SwipeActivity::class.java)
+            startActivity(intent)
+        }
+
+
+
         // Moves the user to the second page to start swiping
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
         binding.bottomNavigationBar.setOnItemSelectedListener {
             when (it.itemId) {
@@ -57,8 +127,8 @@ class MainActivity : AppCompatActivity() {
                     startActivity(Intent(this,MainActivity::class.java))
                 }
                 R.id.swipe -> {
-                        val intent = Intent(this,SwipeActivity::class.java)
-                        startActivity(intent)
+                    val intent = Intent(this,SwipeActivity::class.java)
+                    startActivity(intent)
                 }
                 R.id.restaurants -> {
                     startActivity(Intent(this,FindRestaurantActivity::class.java))

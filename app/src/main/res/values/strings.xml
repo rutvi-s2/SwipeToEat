@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">SwipeToEat</string>
     <string name="restaurant_grid_image">restaurant grid image</string>
+    <string-array name="languages">
+        <item>C</item>
+        <item>C++</item>
+        <item>Java</item>
+        <item>JavaScript</item>
+        <item>VisualBasic</item>
+    </string-array>
 </resources>

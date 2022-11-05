@@ -3,6 +3,7 @@ package com.example.swipetoeat.data
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import com.example.swipetoeat.R
+import com.example.swipetoeat.YelpCategory
 import com.example.swipetoeat.YelpRestaurant
 import com.example.swipetoeat.model.Restaurant
 
@@ -24,4 +25,6 @@ object DataSource {
 ////                    ratingNumber
 //        )
     )
+
+    var cuisines: MutableList<YelpCategory> = mutableListOf()
 }

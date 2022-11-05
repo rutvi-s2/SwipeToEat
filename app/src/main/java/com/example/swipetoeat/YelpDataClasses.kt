@@ -4,6 +4,11 @@ import com.google.gson.annotations.SerializedName
 
 data class YelpSearchResult(
     @SerializedName("businesses") val restaurants: List<YelpRestaurant>
+//    @SerializedName("categories") val cuisines: List<YelpCategory>
+)
+
+data class YelpSearchResultCuisine(
+    @SerializedName("category") val cuisines: List<YelpCategory>
 )
 
 data class YelpRestaurant(
@@ -27,6 +32,7 @@ data class YelpRestaurant(
 data class YelpCategory(
     val title:String
 )
+
 
 data class YelpLocation(
     @SerializedName("address1") val address : String
