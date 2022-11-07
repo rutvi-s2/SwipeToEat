@@ -28,6 +28,11 @@ class MainActivity : AppCompatActivity()  {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val buttonToSwipePage = findViewById<Button>(R.id.start_swiping)
+        buttonToSwipePage.setOnClickListener {
+            val intent = Intent(this, SwipeActivity::class.java)
+            startActivity(intent)
+        }
 
 
 
