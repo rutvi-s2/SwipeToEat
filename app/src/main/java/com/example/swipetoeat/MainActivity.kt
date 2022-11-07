@@ -115,7 +115,7 @@ class MainActivity : AppCompatActivity()  {
 
 
         // Moves the user to the second page to start swiping
-
+        binding.bottomNavigationBar.selectedItemId = R.id.home
         binding.bottomNavigationBar.setOnItemSelectedListener {
             when (it.itemId) {
                 // Takes user to the home page

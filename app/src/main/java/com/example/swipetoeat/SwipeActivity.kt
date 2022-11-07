@@ -13,6 +13,7 @@ import com.example.swipetoeat.data.DataSource
 import com.example.swipetoeat.databinding.ActivitySwipeBinding
 import com.example.swipetoeat.model.Restaurant
 import com.yalantis.library.KolodaListener
+import android.graphics.Color
 
 
 class SwipeActivity : AppCompatActivity() {
@@ -27,6 +28,7 @@ class SwipeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_swipe)
         binding = ActivitySwipeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.bottomNavigationBar.selectedItemId = R.id.swipe
         binding.bottomNavigationBar.setOnItemSelectedListener {
             when (it.itemId) {
                 // Takes user to the home page
@@ -44,6 +46,7 @@ class SwipeActivity : AppCompatActivity() {
             }
             true
         }
+
         koloda = findViewById(R.id.koloda)
 
         list = DataSource.restaurants

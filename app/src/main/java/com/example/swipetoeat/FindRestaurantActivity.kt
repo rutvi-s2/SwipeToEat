@@ -22,6 +22,7 @@ class FindRestaurantActivity : AppCompatActivity(), RestaurantCardAdapter.OnItem
         setContentView(R.layout.activity_find_restaurant)
         binding = ActivityFindRestaurantBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.bottomNavigationBar.selectedItemId = R.id.restaurants
         binding.bottomNavigationBar.setOnItemSelectedListener {
             when (it.itemId) {
                 // Takes user to the home page
