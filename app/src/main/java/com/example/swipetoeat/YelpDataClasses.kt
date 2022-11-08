@@ -46,5 +46,6 @@ data class YelpCategory(
 
 
 data class YelpLocation(
-    @SerializedName("address1") val address : String
+    @SerializedName("address1") val address : String,
+    @SerializedName("city") val city : String
 )
