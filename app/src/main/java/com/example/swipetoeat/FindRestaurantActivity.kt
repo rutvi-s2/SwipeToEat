@@ -1,16 +1,16 @@
 package com.example.swipetoeat
 
+import android.content.ClipData.Item
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import com.example.swipetoeat.adapter.RestaurantCardAdapter
 import com.example.swipetoeat.data.DataSource
 import com.example.swipetoeat.databinding.ActivityFindRestaurantBinding
-import com.example.swipetoeat.databinding.ActivitySwipeBinding
-import com.example.swipetoeat.model.Restaurant
+import java.util.*
+import kotlin.random.Random
 
 
 class FindRestaurantActivity : AppCompatActivity(), RestaurantCardAdapter.OnItemClickListener{
@@ -52,10 +52,17 @@ class FindRestaurantActivity : AppCompatActivity(), RestaurantCardAdapter.OnItem
 //        }
 
         // TODO: when randomly generate button is clicked, we choose a restaurant for the user
-//        val randomlyGenerate = findViewById<Button>(R.id.randomly_generate_button)
-//        randomlyGenerate.setOnClickListener {
-//
-//        }
+        val randomlyGenerate = findViewById<Button>(R.id.surprise_me_button)
+        randomlyGenerate.setOnClickListener {
+            val seed = System.nanoTime()
+            DataSource.restaurants.shuffle(Random(seed))
+            val index: Int = Random.nextInt(DataSource.restaurants.size)
+            val item: YelpRestaurant = DataSource.restaurants[index]
+
+            val intent = Intent(this, SurpriseMeActivity::class.java)
+            intent.putExtra("restaurantIndex", index)
+            startActivity(intent)
+        }
 
     }
 

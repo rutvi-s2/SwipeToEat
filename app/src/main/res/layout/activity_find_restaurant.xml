@@ -35,12 +35,12 @@
             android:textSize="34sp" />
 
         <Button
-            android:id="@+id/randomly_generate_button"
+            android:id="@+id/surprise_me_button"
             android:layout_width="329dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="39dp"
             android:layout_marginTop="57dp"
-            android:text="Randomly Generate Restaurant"
+            android:text="Surprise Me"
             app:layout_constraintBottom_toBottomOf="@id/textView"
             app:layout_constraintStart_toStartOf="parent" />
 
