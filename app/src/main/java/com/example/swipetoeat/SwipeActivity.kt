@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import java.util.ArrayList
 import android.widget.ImageButton
+import android.widget.Button
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -76,7 +77,7 @@ class SwipeActivity : AppCompatActivity() {
 //        imageResourceBitmap = BitmapFactory.decodeResource(resources, R.drawable.casa_de_mariscos_enchiladas);
 
         // Intent takes user to the find restaurants page once they are done swiping
-        val restaurantsPage = findViewById<ImageButton>(R.id.done_swiping_button)
+        val restaurantsPage = findViewById<Button>(R.id.done_swiping)
         restaurantsPage.setOnClickListener {
             // temp values to test RestaurantCardAdapter
             // Adds restaurant user has swiped right on to the list
