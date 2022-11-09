@@ -10,13 +10,14 @@
     <TextView
         android:id="@+id/letsSwipeName"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="16dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Display2"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/desiredCuisine"
         app:layout_constraintStart_toStartOf="parent"
         android:gravity="center"
         android:textSize="35dp"
@@ -25,14 +26,16 @@
     <TextView
         android:id="@+id/desiredCuisine"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="1dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="16dp"
+
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/letsSwipeName"
+        app:layout_constraintBottom_toTopOf="@id/koloda"
         android:autoSizeTextType="uniform"
         android:autoSizeMinTextSize="12sp"
         android:autoSizeMaxTextSize="100sp"
@@ -42,44 +45,44 @@
     <com.yalantis.library.Koloda
         android:id="@+id/koloda"
         android:layout_width="match_parent"
-        android:layout_height="550dp"
+        android:layout_height="520dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="50dp"
         app:koloda_card_layout="@layout/item_koloda"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/desiredCuisine"
-        app:layout_constraintBottom_toBottomOf="@id/done_swiping_button"
-        />
-
-    <ImageButton
-        android:id="@+id/done_swiping_button"
-        style="@style/Widget.MaterialComponents.Button.Icon"
-        android:layout_width="80dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginStart="160dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-
-        app:layout_constraintBottom_toTopOf="@id/bottomNavigationBar"
-        app:layout_constraintStart_toStartOf="parent"
-        android:src="@drawable/done_swiping_button"
+        app:layout_constraintBottom_toTopOf="@id/done_swiping"
         />
 
 <!--    <ImageButton-->
-<!--        android:id="@+id/home_button"-->
+<!--        android:id="@+id/done_swiping_button"-->
 <!--        style="@style/Widget.MaterialComponents.Button.Icon"-->
-<!--        android:layout_width="64dp"-->
-<!--        android:layout_height="64dp"-->
-<!--        android:layout_marginStart="16dp"-->
+<!--        android:layout_width="80dp"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:layout_marginTop="100dp"-->
+<!--        android:layout_marginStart="160dp"-->
 <!--        android:layout_marginEnd="16dp"-->
-<!--        android:layout_marginBottom="8dp"-->
-<!--        android:src="@drawable/home_button"-->
+<!--        android:layout_marginBottom="50dp"-->
 <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent" />-->
+<!--        app:layout_constraintBottom_toTopOf="@id/bottomNavigationBar"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        android:src="@drawable/done_swiping_button"-->
+<!--        />-->
+
+    <Button
+        android:id="@+id/done_swiping"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigationBar"
+        app:layout_constraintBottom_toBottomOf="@id/koloda"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="20dp"
+        android:text="Done Swiping"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <FrameLayout
         android:id="@+id/frame_layout"

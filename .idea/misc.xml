@@ -3,11 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/abbyn/AndroidStudioProjects/SwipeToEat/app/src/main/res/drawable/selector.xml" value="0.145" />
+        <entry key="..\:/Users/abbyn/AndroidStudioProjects/SwipeToEat/app/src/main/res/layout/activity_find_restaurant.xml" value="0.14270833333333333" />
+        <entry key="..\:/Users/abbyn/AndroidStudioProjects/SwipeToEat/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/abbyn/AndroidStudioProjects/SwipeToEat/app/src/main/res/layout/activity_swipe.xml" value="0.2" />
+        <entry key="..\:/Users/abbyn/AndroidStudioProjects/SwipeToEat/app/src/main/res/layout/item_koloda.xml" value="0.14270833333333333" />
+        <entry key="..\:/Users/abbyn/AndroidStudioProjects/SwipeToEat/app/src/main/res/layout/restaurant_grid_item.xml" value="0.14270833333333333" />
+        <entry key="..\:/Users/abbyn/AndroidStudioProjects/SwipeToEat/app/src/main/res/menu/bottom_nav_bar.xml" value="0.1" />
         <entry key="..\:/Users/raque/AndroidStudioProjects/SwipeToEat/app/src/main/res/layout/activity3_main.xml" value="0.24003623188405798" />
         <entry key="..\:/Users/raque/AndroidStudioProjects/SwipeToEat/app/src/main/res/layout/activity_find_restaurant.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/raque/AndroidStudioProjects/SwipeToEat/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/raque/AndroidStudioProjects/SwipeToEat/app/src/main/res/layout/activity_restaurants.xml" value="0.1" />
-        <entry key="..\:/Users/raque/AndroidStudioProjects/SwipeToEat/app/src/main/res/layout/activity_surprise_me.xml" value="0.12" />
         <entry key="..\:/Users/raque/AndroidStudioProjects/SwipeToEat/app/src/main/res/layout/activity_swipe.xml" value="0.13179347826086957" />
         <entry key="..\:/Users/raque/AndroidStudioProjects/SwipeToEat/app/src/main/res/layout/activity_yelp.xml" value="0.13179347826086957" />
         <entry key="..\:/Users/raque/AndroidStudioProjects/SwipeToEat/app/src/main/res/layout/find_restaurant.xml" value="0.24003623188405798" />
