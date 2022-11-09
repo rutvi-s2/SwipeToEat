@@ -91,6 +91,29 @@ class MainActivity : AppCompatActivity()  {
 
             // TODO: this is the code that works that populates the restaurant screen. However, it needs to be moved to populate when user swipes right on card
             // TODO: the below needs to populate the swiping screen depending on user input
+//            val restaurants: MutableList<YelpRestaurant> = DataSource.restaurantOptions
+//
+//            val retrofit = Retrofit.Builder().baseUrl(BASE_URL)
+//                .addConverterFactory(GsonConverterFactory.create()).build()
+//            val yelpService = retrofit.create(YelpService::class.java)
+//            yelpService.searchRestaurants("Bearer $API_KEY","indpak", "Austin").enqueue(object : Callback<YelpSearchResult> {
+//                override fun onResponse(call: Call<YelpSearchResult>, response: Response<YelpSearchResult>) {
+//                    Log.i(TAG, "onResponse $response")
+//                    val body = response.body()
+//                    if (body == null) {
+//                        Log.w(TAG, "Did not receive valid response body from Yelp API ... exit")
+//                        return
+//                    }
+//                    restaurants.addAll(body.restaurants)
+//                    DataSource.restaurantOptions = restaurants
+//                }
+//
+//                override fun onFailure(call: Call<YelpSearchResult>, t: Throwable) {
+//                    Log.i(TAG, "onFailure $t")
+//                }
+//            })
+
+
             val restaurants: MutableList<YelpRestaurant> = DataSource.restaurants
 
             val retrofit = Retrofit.Builder().baseUrl(BASE_URL)
@@ -112,6 +135,8 @@ class MainActivity : AppCompatActivity()  {
                     Log.i(TAG, "onFailure $t")
                 }
             })
+
+
             // intent to go to start swiping page
             val intent = Intent(this, SwipeActivity::class.java)
             startActivity(intent)

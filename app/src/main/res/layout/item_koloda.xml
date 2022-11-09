@@ -22,12 +22,11 @@
             <com.google.android.material.imageview.ShapeableImageView
                 android:layout_width="match_parent"
                 android:layout_height="400dp"
-                android:id="@+id/image"
+                android:id="@+id/koloda_image"
                 android:backgroundTint="@color/white"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:srcCompat="@drawable/mexican_dish"
                 android:scaleType="fitXY"
                 app:shapeAppearanceOverlay="@style/Shape" />
         </LinearLayout>

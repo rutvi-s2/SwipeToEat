@@ -4,6 +4,7 @@ import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -47,16 +48,13 @@ class FindRestaurantActivity : AppCompatActivity(), RestaurantCardAdapter.OnItem
 
         // Specify fixed size to improve performance
         binding.gridRecyclerView.setHasFixedSize(true)
-        // Intent takes user back to the add reviews page
-//        val firstPage = binding.addMovieBtn
-//        firstPage.setOnClickListener {
-//            val intent = Intent(this, MainActivity::class.java)
-//            startActivity(intent)
-//        }
+
+
 
         // TODO: when randomly generate button is clicked, we choose a restaurant for the user
         val randomlyGenerate = findViewById<Button>(R.id.surprise_me_button)
         randomlyGenerate.setOnClickListener {
+//            Log.d("restaurntsinfind", DataSource.restaurants.toString())
             val seed = System.nanoTime()
             DataSource.restaurants.shuffle(Random(seed))
             val index: Int = Random.nextInt(DataSource.restaurants.size)
