@@ -109,23 +109,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/desiredTimeName" />
 
-<!--    <ImageButton-->
-<!--        android:id="@+id/start_swiping"-->
-<!--        style="@style/Widget.MaterialComponents.Button.Icon"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="51dp"-->
-<!--        android:layout_marginBottom="500dp"-->
-<!--        android:src="@drawable/start_swiping"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/desiredTime"/>-->
+    <!--    <ImageButton-->
+    <!--        android:id="@+id/start_swiping"-->
+    <!--        style="@style/Widget.MaterialComponents.Button.Icon"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="51dp"-->
+    <!--        android:layout_marginBottom="500dp"-->
+    <!--        android:src="@drawable/start_swiping"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@id/desiredTime"/>-->
 
     <Button
         android:id="@+id/start_swiping"
         android:layout_width="wrap_content"
-        android:layout_height="51dp"
+        android:layout_height="50dp"
         app:layout_constraintTop_toBottomOf="@id/desiredTime"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigationBar"
         android:text="Start Swiping"
-        android:layout_marginTop="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 

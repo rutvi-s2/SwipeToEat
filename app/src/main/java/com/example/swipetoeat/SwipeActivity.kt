@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import java.util.ArrayList
 import android.widget.ImageButton
+import android.widget.Button
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -14,7 +15,6 @@ import com.example.swipetoeat.databinding.ActivitySwipeBinding
 import com.example.swipetoeat.model.Restaurant
 import com.yalantis.library.KolodaListener
 import android.graphics.Color
-import android.util.Log
 import com.example.swipetoeat.adapter.SwipeAdapter
 
 
@@ -22,7 +22,7 @@ class SwipeActivity : AppCompatActivity() {
     private lateinit var adapter: SwipeAdapter
     private lateinit var list: MutableList<YelpRestaurant>
     private lateinit var koloda: Koloda
-//    lateinit var imageResourceBitmap: Bitmap
+    //    lateinit var imageResourceBitmap: Bitmap
     private lateinit var binding : ActivitySwipeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,24 +49,11 @@ class SwipeActivity : AppCompatActivity() {
             true
         }
 
-        // Intent takes user to the find restaurants page once they are done swiping
-        val restaurantsPage = findViewById<ImageButton>(R.id.done_swiping_button)
-        restaurantsPage.setOnClickListener {
-            Log.d("restaurntsinswipeclick", DataSource.restaurants.toString())
-
-
-            val intent = Intent(this, FindRestaurantActivity::class.java)
-            startActivity(intent)
-        }
-
         koloda = findViewById(R.id.koloda)
 
-//        list = DataSource.restaurantOptions
         list = DataSource.restaurants
-        Log.d("restaurntsinswipe", DataSource.restaurants.toString())
         adapter = SwipeAdapter(this, list)
-        koloda.adapter = SwipeAdapter(this, list)
-
+        koloda.adapter = adapter
 
         koloda.kolodaListener = object : KolodaListener {
 
@@ -90,15 +77,26 @@ class SwipeActivity : AppCompatActivity() {
 
 //        imageResourceBitmap = BitmapFactory.decodeResource(resources, R.drawable.casa_de_mariscos_enchiladas);
 
-//        // Intent takes user to the find restaurants page once they are done swiping
-//        val restaurantsPage = findViewById<ImageButton>(R.id.done_swiping_button)
-//        restaurantsPage.setOnClickListener {
-//            Log.d("restaurntsinswipeclick", DataSource.restaurants.toString())
-//
-//
-//            val intent = Intent(this, FindRestaurantActivity::class.java)
-//            startActivity(intent)
-//        }
+        // Intent takes user to the find restaurants page once they are done swiping
+        val restaurantsPage = findViewById<Button>(R.id.done_swiping)
+        restaurantsPage.setOnClickListener {
+            // temp values to test RestaurantCardAdapter
+            // Adds restaurant user has swiped right on to the list
+//            val restaurants: MutableList<Restaurant> = DataSource.restaurants
+//            restaurants.add(
+//                Restaurant(
+//                    imageResourceBitmap,
+//                    "Casa de Mariscos",
+//                    "3 miles",
+//                    "10:00am - 5:00pm"
+////                    editText.text.toString(),
+////                    reviewText.text.toString(),
+////                    ratingNumber
+//                )
+//            )
+            val intent = Intent(this, FindRestaurantActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 
