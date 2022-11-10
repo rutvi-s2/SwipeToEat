@@ -23,7 +23,9 @@ class RestaurantCardAdapter (
 
 
     // initialize the data using the restaurants List found in DataSource
-    private var restaurants: List<YelpRestaurant> = DataSource.restaurants
+//    private var restaurants: List<YelpRestaurant> = DataSource.restaurants
+    private var restaurants: List<YelpRestaurant> = DataSource.swipedRightRestaurants
+
 
     /**
      * Initialize view elements

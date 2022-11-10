@@ -71,6 +71,10 @@ class SwipeActivity : AppCompatActivity() {
 
                 val toast = Toast.makeText(applicationContext, text, duration)
                 toast.show()
+
+                // get the restaurant swiped right on
+                val restaurant: YelpRestaurant = list[position + 1]
+                DataSource.swipedRightRestaurants.add(restaurant)
             }
 
         }

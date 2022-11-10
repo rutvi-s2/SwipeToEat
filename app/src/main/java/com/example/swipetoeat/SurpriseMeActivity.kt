@@ -23,7 +23,7 @@ class SurpriseMeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val extras = intent.extras
-        val restaurant: YelpRestaurant = DataSource.restaurants[extras?.getInt("restaurantIndex")!!]
+        val restaurant: YelpRestaurant = DataSource.swipedRightRestaurants[extras?.getInt("restaurantIndex")!!]
         binding.restaurantGridName.text = restaurant.name
         binding.restaurantGridHours.text = restaurant.location.address
         binding.restaurantGridDistance.text = restaurant.displayDistance()

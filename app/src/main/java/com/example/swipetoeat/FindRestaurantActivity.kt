@@ -54,11 +54,11 @@ class FindRestaurantActivity : AppCompatActivity(), RestaurantCardAdapter.OnItem
         // TODO: when randomly generate button is clicked, we choose a restaurant for the user
         val randomlyGenerate = findViewById<Button>(R.id.surprise_me_button)
         randomlyGenerate.setOnClickListener {
-//            Log.d("restaurntsinfind", DataSource.restaurants.toString())
             val seed = System.nanoTime()
-            DataSource.restaurants.shuffle(Random(seed))
-            val index: Int = Random.nextInt(DataSource.restaurants.size)
-            val item: YelpRestaurant = DataSource.restaurants[index]
+            Log.d("rightRestaurants", DataSource.swipedRightRestaurants.toString())
+            DataSource.swipedRightRestaurants.shuffle(Random(seed))
+            val index: Int = Random.nextInt(DataSource.swipedRightRestaurants.size)
+            val item: YelpRestaurant = DataSource.swipedRightRestaurants[index]
 
             val intent = Intent(this, SurpriseMeActivity::class.java)
             intent.putExtra("restaurantIndex", index)
@@ -70,7 +70,7 @@ class FindRestaurantActivity : AppCompatActivity(), RestaurantCardAdapter.OnItem
     // when RestaurantCardAdapter is clicked, send the data over the intent and start the intent
     // for yelp screen
     override fun onItemClick(position: Int, restaurants: List<YelpRestaurant>) {
-        val restaurant: YelpRestaurant = DataSource.restaurants[position]
+        val restaurant: YelpRestaurant = DataSource.swipedRightRestaurants[position]
         var restaurantName = restaurant.name
         var restaurantCity = restaurant.location.city
         restaurantName = restaurantName.replace("\\s".toRegex(), "-")
