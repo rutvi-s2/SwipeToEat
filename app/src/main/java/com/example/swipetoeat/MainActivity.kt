@@ -98,7 +98,6 @@ class MainActivity : AppCompatActivity()  {
         }
 
 
-
         fun yelpAPIForRestaurants() {
             val restaurants: MutableList<YelpRestaurant> = DataSource.restaurants
 
@@ -106,7 +105,7 @@ class MainActivity : AppCompatActivity()  {
                 .addConverterFactory(GsonConverterFactory.create()).build()
             val yelpService = retrofit.create(YelpService::class.java)
             Log.d("spinnerLabel", spinnerLabel)
-            yelpService.searchRestaurants("Bearer $API_KEY",spinnerLabel, binding.location.toString()).enqueue(object : Callback<YelpSearchResult> {
+            yelpService.searchRestaurants("Bearer $API_KEY",spinnerLabel, binding.location.text.toString()).enqueue(object : Callback<YelpSearchResult> {
                 override fun onResponse(call: Call<YelpSearchResult>, response: Response<YelpSearchResult>) {
                     Log.i(TAG, "onResponse $response")
                     val body = response.body()
