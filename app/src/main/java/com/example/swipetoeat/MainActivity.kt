@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.provider.ContactsContract
 import android.util.Log
+import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.swipetoeat.data.DataSource
@@ -22,6 +23,7 @@ private const val BASE_URL = "https://api.yelp.com/v3/"
 private const val API_KEY = "u0xY7xJPFNwzMdqfDLljz3N1pbhesJ7WEFt8exp9A0-G8mMDEj2DJjCY6u4RWdly7zs1GbYiJ4oaIfjgOAKdSyC0qhw_zexcKTp1hCaaAfhLiE_tuRr2ioPmEfliY3Yx"
 class MainActivity : AppCompatActivity()  {
     private lateinit var binding : ActivityMainBinding
+    var spinnerLabel : String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -76,16 +78,26 @@ class MainActivity : AppCompatActivity()  {
         }
 
 
-//        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-//            override fun onNothingSelected(parent: AdapterView<*>?) {
-//
-//            }
-//
-//            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-//
-//            }
-//
-//        }
+        binding.desiredCuisineSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                // first get the cuisine that the user selected
+                spinnerLabel = parent?.getItemAtPosition(position).toString()
+                // now set it to the alias so we can send it in the YELP request
+                val temp : String =
+                    DataSource.cuisinesWithAlias.find { it.title == spinnerLabel }?.alias ?: "no alias found"
+                spinnerLabel = temp
+                    // Showing selected spinner item
+//                    Toast.makeText(parent.getContext(), "You selected: " + label,Toast.LENGTH_LONG).show();
+
+            }
+
+        }
+
+
 
         fun yelpAPIForRestaurants() {
             val restaurants: MutableList<YelpRestaurant> = DataSource.restaurants
@@ -93,7 +105,8 @@ class MainActivity : AppCompatActivity()  {
             val retrofit = Retrofit.Builder().baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create()).build()
             val yelpService = retrofit.create(YelpService::class.java)
-            yelpService.searchRestaurants("Bearer $API_KEY","indpak", "Austin").enqueue(object : Callback<YelpSearchResult> {
+            Log.d("spinnerLabel", spinnerLabel)
+            yelpService.searchRestaurants("Bearer $API_KEY",spinnerLabel, binding.location.toString()).enqueue(object : Callback<YelpSearchResult> {
                 override fun onResponse(call: Call<YelpSearchResult>, response: Response<YelpSearchResult>) {
                     Log.i(TAG, "onResponse $response")
                     val body = response.body()

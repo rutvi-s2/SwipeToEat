@@ -1,5 +1,6 @@
 package com.example.swipetoeat
 
+import com.example.swipetoeat.data.DataSource
 import com.google.gson.annotations.SerializedName
 
 data class YelpSearchResult(
@@ -15,6 +16,7 @@ data class YelpSearchResultCuisine(
         for (c in cuisines) {
             if (c.parentAliases.isNotEmpty() && c.parentAliases[0] == "restaurants") {
                 restaurantCuisines.add(c.title)
+                DataSource.cuisinesWithAlias.add(c)
             }
         }
         return restaurantCuisines
@@ -40,8 +42,9 @@ data class YelpRestaurant(
 }
 
 data class YelpCategory(
-    val title:String,
-    @SerializedName("parent_aliases") val parentAliases: List<String>
+    val title: String,
+    @SerializedName("parent_aliases") val parentAliases: List<String>,
+    @SerializedName("alias") val alias: String
 )
 
 
