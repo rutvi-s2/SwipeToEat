@@ -51,18 +51,25 @@ class FindRestaurantActivity : AppCompatActivity(), RestaurantCardAdapter.OnItem
 
 
 
-        // TODO: when randomly generate button is clicked, we choose a restaurant for the user
+        // when randomly generate button is clicked, we choose a restaurant for the user
         val randomlyGenerate = findViewById<Button>(R.id.surprise_me_button)
         randomlyGenerate.setOnClickListener {
-            val seed = System.nanoTime()
-            Log.d("rightRestaurants", DataSource.swipedRightRestaurants.toString())
-            DataSource.swipedRightRestaurants.shuffle(Random(seed))
-            val index: Int = Random.nextInt(DataSource.swipedRightRestaurants.size)
-            val item: YelpRestaurant = DataSource.swipedRightRestaurants[index]
+            if (DataSource.swipedRightRestaurants.isEmpty()) {
+                val text = "You have not swiped right on any meals yet!"
+                val duration = Toast.LENGTH_SHORT
 
-            val intent = Intent(this, SurpriseMeActivity::class.java)
-            intent.putExtra("restaurantIndex", index)
-            startActivity(intent)
+                val toast = Toast.makeText(applicationContext, text, duration)
+                toast.show()
+            } else {
+                val seed = System.nanoTime()
+                Log.d("rightRestaurants", DataSource.swipedRightRestaurants.toString())
+                DataSource.swipedRightRestaurants.shuffle(Random(seed))
+                val index: Int = Random.nextInt(DataSource.swipedRightRestaurants.size)
+
+                val intent = Intent(this, SurpriseMeActivity::class.java)
+                intent.putExtra("restaurantIndex", index)
+                startActivity(intent)
+            }
         }
 
     }

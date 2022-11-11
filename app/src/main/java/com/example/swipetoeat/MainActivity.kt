@@ -2,7 +2,6 @@ package com.example.swipetoeat
 
 import android.content.Intent
 import android.os.Bundle
-import android.provider.ContactsContract
 import android.util.Log
 import android.view.View
 import android.widget.*
@@ -65,7 +64,7 @@ class MainActivity : AppCompatActivity()  {
 
         // Create an ArrayAdapter using the string array and a default spinner layout
 //        ArrayAdapter<YelpCategory>() adapter_category = new ArrayAdapter<YelpCategory>(this, android.R.layout.simple_spinner_item, cuisines)
-        var cuisineAdapter: ArrayAdapter<String> = ArrayAdapter<String>(
+        val cuisineAdapter: ArrayAdapter<String> = ArrayAdapter<String>(
             this,
             android.R.layout.simple_spinner_item,
             DataSource.cuisines
@@ -124,18 +123,31 @@ class MainActivity : AppCompatActivity()  {
         }
 
         binding.startSwiping.setOnClickListener {
+            if (binding.location.text.isEmpty()) {
+                val text = "Please enter information."
+                val duration = Toast.LENGTH_SHORT
 
-            // TODO: this is the code that works that populates the restaurant screen. However, it needs to be moved to populate when user swipes right on card
-            // TODO: the below needs to populate the swiping screen depending on user input
+                val toast = Toast.makeText(applicationContext, text, duration)
+                toast.show()
+            } else {
+                if (spinnerLabel.isEmpty()) {
+                    val text = "You did not enter a cuisine. All will be included in search."
+                    val duration = Toast.LENGTH_SHORT
 
-            // intent to go to start swiping page
-            yelpAPIForRestaurants()
-            GlobalScope.launch() {
-                delay(1000L)
-                val intent = Intent(this@MainActivity, SwipeActivity::class.java)
-                startActivity(intent)
+                    val toast = Toast.makeText(applicationContext, text, duration)
+                    toast.show()
+                }
+                // intent to go to start swiping page
+                GlobalScope.launch() {
+                    // function call to retrieve list of restaurants from yelp
+                    yelpAPIForRestaurants()
+                    delay(1000L)
+                    val intent = Intent(this@MainActivity, SwipeActivity::class.java)
+                    startActivity(intent)
+
+
+                }
             }
-
         }
 
 
@@ -149,11 +161,28 @@ class MainActivity : AppCompatActivity()  {
                     startActivity(Intent(this,MainActivity::class.java))
                 }
                 R.id.swipe -> {
-                    val intent = Intent(this,SwipeActivity::class.java)
-                    startActivity(intent)
+                    // spinnerLabel.isEmpty() || binding.location.text.isEmpty()
+                    if (DataSource.restaurants.isEmpty()) {
+                        val text = "Please enter information and click on start swiping."
+                        val duration = Toast.LENGTH_SHORT
+
+                        val toast = Toast.makeText(applicationContext, text, duration)
+                        toast.show()
+                    } else {
+                        val intent = Intent(this,SwipeActivity::class.java)
+                        startActivity(intent)
+                    }
                 }
                 R.id.restaurants -> {
-                    startActivity(Intent(this,FindRestaurantActivity::class.java))
+                    if (DataSource.swipedRightRestaurants.isEmpty()) {
+                        val text = "You have not swiped right on any meals yet!"
+                        val duration = Toast.LENGTH_SHORT
+
+                        val toast = Toast.makeText(applicationContext, text, duration)
+                        toast.show()
+                    } else {
+                        startActivity(Intent(this,FindRestaurantActivity::class.java))
+                    }
                 }
                 else -> {
                 }

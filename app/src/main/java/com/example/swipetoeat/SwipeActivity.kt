@@ -41,7 +41,15 @@ class SwipeActivity : AppCompatActivity() {
                     startActivity(Intent(this,SwipeActivity::class.java))
                 }
                 R.id.restaurants -> {
-                    startActivity(Intent(this,FindRestaurantActivity::class.java))
+                    if (DataSource.swipedRightRestaurants.isEmpty()) {
+                        val text = "You have not swiped right on any meals yet!"
+                        val duration = Toast.LENGTH_SHORT
+
+                        val toast = Toast.makeText(applicationContext, text, duration)
+                        toast.show()
+                    } else {
+                        startActivity(Intent(this,FindRestaurantActivity::class.java))
+                    }
                 }
                 else -> {
                 }
