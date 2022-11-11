@@ -30,6 +30,17 @@ class SwipeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_swipe)
         binding = ActivitySwipeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        // set the cuisine the user chose to the text shown on the screen
+        val extras = intent.extras
+        val chosenCuisine: String = extras?.getString("chosen cuisine")!!
+        var displayCuisine = ""
+        if (chosenCuisine.isEmpty()) {
+            displayCuisine = "Desired Cuisine: All"
+        } else {
+            displayCuisine = "Desired Cuisine: $chosenCuisine"
+        }
+        binding.desiredCuisine.text = displayCuisine
+
         binding.bottomNavigationBar.selectedItemId = R.id.swipe
         binding.bottomNavigationBar.setOnItemSelectedListener {
             when (it.itemId) {

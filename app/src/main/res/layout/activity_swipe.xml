@@ -33,8 +33,7 @@
         android:autoSizeTextType="uniform"
         android:autoSizeMinTextSize="12sp"
         android:autoSizeMaxTextSize="100sp"
-        android:autoSizeStepGranularity="2sp"
-        android:text="Desired Cuisine: Mexican" />
+        android:autoSizeStepGranularity="2sp" />
 
     <com.yalantis.library.Koloda
         android:id="@+id/koloda"

@@ -23,6 +23,7 @@ private const val API_KEY = "u0xY7xJPFNwzMdqfDLljz3N1pbhesJ7WEFt8exp9A0-G8mMDEj2
 class MainActivity : AppCompatActivity()  {
     private lateinit var binding : ActivityMainBinding
     var spinnerLabel : String = ""
+    var chosenCuisine : String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -84,14 +85,10 @@ class MainActivity : AppCompatActivity()  {
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 // first get the cuisine that the user selected
-                spinnerLabel = parent?.getItemAtPosition(position).toString()
+                chosenCuisine = parent?.getItemAtPosition(position).toString()
                 // now set it to the alias so we can send it in the YELP request
-                val temp : String =
-                    DataSource.cuisinesWithAlias.find { it.title == spinnerLabel }?.alias ?: "no alias found"
-                spinnerLabel = temp
-                    // Showing selected spinner item
-//                    Toast.makeText(parent.getContext(), "You selected: " + label,Toast.LENGTH_LONG).show();
-
+                spinnerLabel =
+                    DataSource.cuisinesWithAlias.find { it.title == chosenCuisine }?.alias ?: "no alias found"
             }
 
         }
@@ -143,6 +140,7 @@ class MainActivity : AppCompatActivity()  {
                     yelpAPIForRestaurants()
                     delay(1000L)
                     val intent = Intent(this@MainActivity, SwipeActivity::class.java)
+                    intent.putExtra("chosen cuisine", chosenCuisine)
                     startActivity(intent)
 
 
