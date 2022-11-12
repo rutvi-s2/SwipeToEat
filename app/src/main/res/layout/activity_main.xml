@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".MainActivity">
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -109,15 +115,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/desiredTimeName" />
 
-    <!--    <ImageButton-->
-    <!--        android:id="@+id/start_swiping"-->
-    <!--        style="@style/Widget.MaterialComponents.Button.Icon"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="51dp"-->
-    <!--        android:layout_marginBottom="500dp"-->
-    <!--        android:src="@drawable/start_swiping"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@id/desiredTime"/>-->
 
     <Button
         android:id="@+id/start_swiping"
@@ -153,3 +150,4 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
