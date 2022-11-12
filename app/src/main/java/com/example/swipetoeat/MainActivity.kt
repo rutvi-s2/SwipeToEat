@@ -107,6 +107,7 @@ class MainActivity : AppCompatActivity()  {
                     val body = response.body()
                     if (body == null) {
                         Log.w(TAG, "Did not receive valid response body from Yelp API ... exit")
+
                         return
                     }
                     restaurants.addAll(body.restaurants)
@@ -161,6 +162,7 @@ class MainActivity : AppCompatActivity()  {
                 R.id.swipe -> {
                     // spinnerLabel.isEmpty() || binding.location.text.isEmpty()
                     if (DataSource.restaurants.isEmpty()) {
+                        binding.bottomNavigationBar.selectedItemId = R.id.home
                         val text = "Please enter information and click on start swiping."
                         val duration = Toast.LENGTH_SHORT
 
