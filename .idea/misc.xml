@@ -4,7 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/abbyn/AndroidStudioProjects/SwipeToEat/app/src/main/res/drawable/selector.xml" value="0.145" />
-        <entry key="..\:/Users/abbyn/AndroidStudioProjects/SwipeToEat/app/src/main/res/layout/activity_find_restaurant.xml" value="0.14270833333333333" />
+        <entry key="..\:/Users/abbyn/AndroidStudioProjects/SwipeToEat/app/src/main/res/layout-land/activity_find_restaurant.xml" value="0.21428571428571427" />
+        <entry key="..\:/Users/abbyn/AndroidStudioProjects/SwipeToEat/app/src/main/res/layout/activity_find_restaurant.xml" value="0.264" />
         <entry key="..\:/Users/abbyn/AndroidStudioProjects/SwipeToEat/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/abbyn/AndroidStudioProjects/SwipeToEat/app/src/main/res/layout/activity_surprise_me.xml" value="0.1" />
         <entry key="..\:/Users/abbyn/AndroidStudioProjects/SwipeToEat/app/src/main/res/layout/activity_swipe.xml" value="0.1" />
