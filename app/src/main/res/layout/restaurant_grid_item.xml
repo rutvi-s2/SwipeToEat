@@ -3,14 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
     app:cardElevation="4dp"
     app:cardCornerRadius="4dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+        android:layout_width="402dp"
         android:layout_height="163dp">
 
         <!--        imageView for restaurant image to appear in the restaurant card-->
@@ -21,14 +21,14 @@
             android:id="@+id/restaurant_grid_image"
             android:layout_width="191dp"
             android:layout_height="162dp"
-            android:layout_marginEnd="4dp"
             android:contentDescription="@string/restaurant_grid_image"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.983"
             app:layout_constraintStart_toEndOf="@+id/restaurant_grid_name"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/restaurant_grid_name"
@@ -49,9 +49,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="112dp"
             android:layout_marginTop="16dp"
-            tools:text="3 miles"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/restaurant_grid_hours" />
+            app:layout_constraintTop_toBottomOf="@+id/restaurant_grid_hours"
+            tools:text="3 miles" />
 
         <TextView
             android:id="@+id/restaurant_grid_hours"
@@ -59,9 +59,9 @@
             android:layout_height="18dp"
             android:layout_marginStart="28dp"
             android:gravity="center"
-            tools:text="10:00am - 10:00pm"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/restaurant_grid_name" />
+            app:layout_constraintTop_toBottomOf="@+id/restaurant_grid_name"
+            tools:text="10:00am - 10:00pm" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
