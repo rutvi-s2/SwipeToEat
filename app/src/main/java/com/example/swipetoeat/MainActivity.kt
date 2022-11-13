@@ -1,10 +1,14 @@
 package com.example.swipetoeat
 
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.swipetoeat.data.DataSource
 import com.example.swipetoeat.databinding.ActivityMainBinding
@@ -14,6 +18,8 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import kotlinx.coroutines.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 //SwipeToEat
@@ -24,7 +30,9 @@ class MainActivity : AppCompatActivity()  {
     private lateinit var binding : ActivityMainBinding
     var spinnerLabel : String = ""
     var chosenCuisine : String = ""
-
+    var timeInput : Int = (System.currentTimeMillis()/1000).toInt()
+    var timeInputStr : String = ""
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -101,7 +109,8 @@ class MainActivity : AppCompatActivity()  {
                 .addConverterFactory(GsonConverterFactory.create()).build()
             val yelpService = retrofit.create(YelpService::class.java)
             Log.d("spinnerLabel", spinnerLabel)
-            yelpService.searchRestaurants("Bearer $API_KEY",spinnerLabel, binding.location.text.toString()).enqueue(object : Callback<YelpSearchResult> {
+            Log.d("time input", timeInput.toString())
+            yelpService.searchRestaurants("Bearer $API_KEY",timeInput, spinnerLabel, binding.location.text.toString()).enqueue(object : Callback<YelpSearchResult> {
                 override fun onResponse(call: Call<YelpSearchResult>, response: Response<YelpSearchResult>) {
                     Log.i(TAG, "onResponse $response")
                     val body = response.body()
@@ -188,6 +197,44 @@ class MainActivity : AppCompatActivity()  {
                 }
             }
             true
+        }
+        val selectTimeButton = findViewById<Button>(R.id.desiredTimeBtn)
+        val formatter = SimpleDateFormat("MMM dd yyyy", Locale.US)
+        val timeFormatter = SimpleDateFormat("hh:mm a", Locale.US)
+        selectTimeButton.setOnClickListener{
+            val now = Calendar.getInstance()
+            var date : String = ""
+            var time : String = ""
+            val timePicker = TimePickerDialog(this, TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->
+                val selectedTime = Calendar.getInstance()
+                selectedTime.set(Calendar.HOUR_OF_DAY, hourOfDay)
+                selectedTime.set(Calendar.MINUTE, minute)
+                time = timeFormatter.format(selectedTime.time)
+                timeInputStr = if(time.substring(time.length- 2, time.length-1) == "P"){
+                    date + " " + (Calendar.HOUR_OF_DAY + 12).toString() + ":" + Calendar.MINUTE + ":00.000 UTC"
+                } else{
+                    date + " " + (Calendar.HOUR_OF_DAY).toString() + ":" + Calendar.MINUTE + ":00.000 UTC"
+                }
+
+                val df = SimpleDateFormat("MMM dd yyyy hh:mm:ss.SSS zzz")
+                var my_dt : Date = df.parse(timeInputStr)
+                timeInput = (my_dt.getTime() / 1000).toInt()
+
+                Log.d("my time", timeInput.toString())
+            },
+                now.get(Calendar.HOUR_OF_DAY), now.get(Calendar.MINUTE), false)
+            timePicker.show()
+
+            val datePicker = DatePickerDialog(this, DatePickerDialog.OnDateSetListener{view, year, month, dayOfMonth ->
+                val selectedDate = Calendar.getInstance()
+                selectedDate.set(Calendar.YEAR, year)
+                selectedDate.set(Calendar.MONTH, month)
+                selectedDate.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+                date = formatter.format(selectedDate.time)
+            },
+                now.get(Calendar.YEAR), now.get(Calendar.MONTH), now.get(Calendar.DAY_OF_MONTH))
+            datePicker.show()
+
         }
     }
 
