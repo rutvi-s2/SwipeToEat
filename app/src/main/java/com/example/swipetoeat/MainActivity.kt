@@ -1,23 +1,34 @@
 package com.example.swipetoeat
 
+import android.Manifest
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.location.Address
+import android.location.Geocoder
+import android.location.Location
+import android.location.LocationManager
 import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import com.example.swipetoeat.data.DataSource
 import com.example.swipetoeat.databinding.ActivityMainBinding
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
+import kotlinx.coroutines.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import kotlinx.coroutines.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -28,6 +39,7 @@ private const val BASE_URL = "https://api.yelp.com/v3/"
 private const val API_KEY = "u0xY7xJPFNwzMdqfDLljz3N1pbhesJ7WEFt8exp9A0-G8mMDEj2DJjCY6u4RWdly7zs1GbYiJ4oaIfjgOAKdSyC0qhw_zexcKTp1hCaaAfhLiE_tuRr2ioPmEfliY3Yx"
 class MainActivity : AppCompatActivity()  {
     private lateinit var binding : ActivityMainBinding
+    private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     var spinnerLabel : String = ""
     var chosenCuisine : String = ""
     var timeInput : Int = (System.currentTimeMillis()/1000).toInt()
@@ -158,7 +170,11 @@ class MainActivity : AppCompatActivity()  {
             }
         }
 
+        //binding.locationBtn.setOnClickListener {
+            fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
+            getCurrentLocation()
 
+        //}
 
         // Moves the user to the second page to start swiping
         binding.bottomNavigationBar.selectedItemId = R.id.home
@@ -238,5 +254,78 @@ class MainActivity : AppCompatActivity()  {
         }
     }
 
+    private fun getCurrentLocation(){
+        if(checkPermissions()){
+            if(isLocationEnabled()){
+                if (ActivityCompat.checkSelfPermission(
+                        this,
+                        Manifest.permission.ACCESS_FINE_LOCATION
+                    ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                        this,
+                        Manifest.permission.ACCESS_COARSE_LOCATION
+                    ) != PackageManager.PERMISSION_GRANTED
+                ) {
+                    requestPermission()
+                    return
+                }
+                fusedLocationProviderClient.lastLocation.addOnCompleteListener(this){ task ->
+                    val location: Location?=task.result
+                    if(location == null){
+                        Toast.makeText(this, "Exception: Location not fetched", Toast.LENGTH_SHORT).show()
+                    } else{
+                        val geocoder = Geocoder(this, Locale.getDefault())
+                        val addresses: List<Address> = geocoder.getFromLocation(location.latitude, location.longitude, 1)
+                        binding.location.setText((addresses.get(0).postalCode).toString())
+                    }
+                }
+            }else {
+                Toast.makeText(this, "Turn on Location in Settings", Toast.LENGTH_SHORT).show()
+                val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+                startActivity(intent)
+            }
+        } else{
+            requestPermission()
+        }
+    }
+
+    private fun requestPermission(){
+        ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.ACCESS_COARSE_LOCATION,
+        android.Manifest.permission.ACCESS_FINE_LOCATION), PERMISSION_REQUEST_ACCESS_LOCATION)
+    }
+
+    private fun isLocationEnabled(): Boolean{
+        val locationManager:LocationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        return (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+                || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER))
+    }
+
+    companion object{
+        private const val PERMISSION_REQUEST_ACCESS_LOCATION =100
+    }
+    private fun checkPermissions(): Boolean{
+        if(ActivityCompat.checkSelfPermission(this,
+            android.Manifest.permission.ACCESS_COARSE_LOCATION) ==
+                PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,
+            android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
+            return true
+        }
+        return false
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if(requestCode == PERMISSION_REQUEST_ACCESS_LOCATION){
+            if(grantResults.isNotEmpty() && grantResults[0]==PackageManager.PERMISSION_GRANTED){
+                Toast.makeText(applicationContext, "Granted Location Permission", Toast.LENGTH_SHORT).show()
+                getCurrentLocation()
+            } else{
+                Toast.makeText(applicationContext, "Denied Location Permission", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
 
 }
