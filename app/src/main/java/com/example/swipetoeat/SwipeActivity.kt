@@ -29,6 +29,7 @@ class SwipeActivity : AppCompatActivity() {
     private lateinit var list: MutableList<YelpRestaurant>
     private lateinit var koloda: Koloda
     var mediaPlayer : MediaPlayer? = null
+    var countSwiped : Int = 0
     //    lateinit var imageResourceBitmap: Bitmap
     private lateinit var binding : ActivitySwipeBinding
 
@@ -90,7 +91,7 @@ class SwipeActivity : AppCompatActivity() {
                 val text = "Swiped Left!"
                 val duration = Toast.LENGTH_SHORT
                 playAudio()
-                list.removeAt(position + 1)
+                countSwiped++
                 val toast = Toast.makeText(applicationContext, text, duration)
                 toast.show()
             }
@@ -99,12 +100,12 @@ class SwipeActivity : AppCompatActivity() {
                 val text = "Swiped Right!"
                 val duration = Toast.LENGTH_SHORT
                 playAudio()
+                countSwiped++
                 val toast = Toast.makeText(applicationContext, text, duration)
                 toast.show()
 
                 // get the restaurant swiped right on
                 val restaurant: YelpRestaurant = list[position + 1]
-                list.removeAt(position + 1)
                 DataSource.swipedRightRestaurants.add(restaurant)
             }
 
@@ -116,6 +117,11 @@ class SwipeActivity : AppCompatActivity() {
         val restaurantsPage = findViewById<Button>(R.id.done_swiping)
         restaurantsPage.setOnClickListener {
 
+            var start = 0
+            while (start < countSwiped){
+                list.removeFirst()
+                start++
+            }
             val intent = Intent(this, FindRestaurantActivity::class.java)
             startActivity(intent)
         }
