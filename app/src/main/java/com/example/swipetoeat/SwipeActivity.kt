@@ -78,7 +78,7 @@ class SwipeActivity : AppCompatActivity() {
 
         koloda = findViewById(R.id.koloda)
 
-        list = DataSource.restaurants
+        list = (DataSource.restaurants).toCollection(mutableListOf())
         adapter = SwipeAdapter(this, list)
         koloda.adapter = adapter
         Log.d("the first length is", list.size.toString())
@@ -122,7 +122,7 @@ class SwipeActivity : AppCompatActivity() {
 
         val reset = findViewById<Button>(R.id.reset)
         reset.setOnClickListener{
-            list = DataSource.restaurants
+            list = (DataSource.restaurants).toCollection(mutableListOf())
             adapter = SwipeAdapter(this, list)
             koloda.adapter = adapter
 
