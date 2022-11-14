@@ -39,6 +39,11 @@ data class YelpRestaurant(
         val distanceInMiles = "%.2f".format(distanceInMeters * milesPerMeter)
         return "$distanceInMiles miles"
     }
+    fun copyy(name:String = this.name, rating:Double = this.rating, price:String = this.price,
+                numReviews: Int = this.numReviews, distanceInMeters: Double = this.distanceInMeters,
+                imageUrl: String = this.imageUrl, categories: List<YelpCategory> = this.categories, location: YelpLocation = this.location): YelpRestaurant {
+        return YelpRestaurant(name, rating, price, numReviews, distanceInMeters, imageUrl, categories, location)
+    }
 }
 
 data class YelpCategory(

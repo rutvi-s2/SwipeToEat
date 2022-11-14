@@ -17,6 +17,9 @@ import com.yalantis.library.KolodaListener
 import android.graphics.Color
 import android.media.AudioManager
 import android.media.MediaPlayer
+import android.provider.ContactsContract
+import android.util.Log
+import androidx.lifecycle.Transformations.map
 import com.example.swipetoeat.adapter.SwipeAdapter
 import java.io.IOException
 
@@ -72,11 +75,14 @@ class SwipeActivity : AppCompatActivity() {
             true
         }
 
+
         koloda = findViewById(R.id.koloda)
 
         list = DataSource.restaurants
         adapter = SwipeAdapter(this, list)
         koloda.adapter = adapter
+        Log.d("the first length is", list.size.toString())
+
 
         koloda.kolodaListener = object : KolodaListener {
 
@@ -84,6 +90,7 @@ class SwipeActivity : AppCompatActivity() {
                 val text = "Swiped Left!"
                 val duration = Toast.LENGTH_SHORT
                 playAudio()
+                list.removeAt(position + 1)
                 val toast = Toast.makeText(applicationContext, text, duration)
                 toast.show()
             }
@@ -97,6 +104,7 @@ class SwipeActivity : AppCompatActivity() {
 
                 // get the restaurant swiped right on
                 val restaurant: YelpRestaurant = list[position + 1]
+                list.removeAt(position + 1)
                 DataSource.swipedRightRestaurants.add(restaurant)
             }
 
@@ -107,22 +115,18 @@ class SwipeActivity : AppCompatActivity() {
         // Intent takes user to the find restaurants page once they are done swiping
         val restaurantsPage = findViewById<Button>(R.id.done_swiping)
         restaurantsPage.setOnClickListener {
-            // temp values to test RestaurantCardAdapter
-            // Adds restaurant user has swiped right on to the list
-//            val restaurants: MutableList<Restaurant> = DataSource.restaurants
-//            restaurants.add(
-//                Restaurant(
-//                    imageResourceBitmap,
-//                    "Casa de Mariscos",
-//                    "3 miles",
-//                    "10:00am - 5:00pm"
-////                    editText.text.toString(),
-////                    reviewText.text.toString(),
-////                    ratingNumber
-//                )
-//            )
+
             val intent = Intent(this, FindRestaurantActivity::class.java)
             startActivity(intent)
+        }
+
+        val reset = findViewById<Button>(R.id.reset)
+        reset.setOnClickListener{
+            list = DataSource.restaurants
+            adapter = SwipeAdapter(this, list)
+            koloda.adapter = adapter
+
+            Log.d("the second length is", list.size.toString())
         }
 
     }
