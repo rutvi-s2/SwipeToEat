@@ -268,8 +268,18 @@ class MainActivity : AppCompatActivity()  {
                     requestPermission()
                     return
                 }
-                fusedLocationProviderClient.lastLocation.addOnCompleteListener(this){ task ->
-                    val location: Location?=task.result
+//                fusedLocationProviderClient.lastLocation.addOnCompleteListener(this){ task ->
+//                    val location: Location?=task.result
+//                    if(location == null){
+//                        Toast.makeText(this, "Exception: Location not fetched", Toast.LENGTH_SHORT).show()
+//                    } else{
+//                        val geocoder = Geocoder(this, Locale.getDefault())
+//                        val addresses: List<Address> = geocoder.getFromLocation(location.latitude, location.longitude, 1)
+//                        binding.location.setText((addresses.get(0).postalCode).toString())
+//                        Toast.makeText(this, ("zipcode" + (addresses.get(0).postalCode).toString()), Toast.LENGTH_SHORT).show()
+//                    }
+//                }
+                    val location: Location? = getLastKnownLocation()
                     if(location == null){
                         Toast.makeText(this, "Exception: Location not fetched", Toast.LENGTH_SHORT).show()
                     } else{
@@ -277,7 +287,6 @@ class MainActivity : AppCompatActivity()  {
                         val addresses: List<Address> = geocoder.getFromLocation(location.latitude, location.longitude, 1)
                         binding.location.setText((addresses.get(0).postalCode).toString())
                     }
-                }
             }else {
                 Toast.makeText(this, "Turn on Location in Settings", Toast.LENGTH_SHORT).show()
                 val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
@@ -286,6 +295,34 @@ class MainActivity : AppCompatActivity()  {
         } else{
             requestPermission()
         }
+    }
+    private fun getLastKnownLocation(): Location? {
+        val mLocationManager:LocationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        val providers: List<String> = mLocationManager.getProviders(true)
+        var bestLocation: Location? = null
+        for (provider in providers) {
+            if (ActivityCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                requestPermission()
+                return null
+            }
+            val l: Location? = mLocationManager.getLastKnownLocation(provider)
+            if (l == null) {
+                continue
+            }
+            if (bestLocation == null
+                || l.accuracy < bestLocation.accuracy
+            ) {
+                bestLocation = l
+            }
+        }
+        return bestLocation
     }
 
     private fun requestPermission(){

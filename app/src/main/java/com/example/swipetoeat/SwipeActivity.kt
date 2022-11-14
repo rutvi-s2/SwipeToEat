@@ -15,13 +15,17 @@ import com.example.swipetoeat.databinding.ActivitySwipeBinding
 import com.example.swipetoeat.model.Restaurant
 import com.yalantis.library.KolodaListener
 import android.graphics.Color
+import android.media.AudioManager
+import android.media.MediaPlayer
 import com.example.swipetoeat.adapter.SwipeAdapter
+import java.io.IOException
 
 
 class SwipeActivity : AppCompatActivity() {
     private lateinit var adapter: SwipeAdapter
     private lateinit var list: MutableList<YelpRestaurant>
     private lateinit var koloda: Koloda
+    var mediaPlayer : MediaPlayer? = null
     //    lateinit var imageResourceBitmap: Bitmap
     private lateinit var binding : ActivitySwipeBinding
 
@@ -79,7 +83,7 @@ class SwipeActivity : AppCompatActivity() {
             override fun onCardSwipedLeft(position: Int) {
                 val text = "Swiped Left!"
                 val duration = Toast.LENGTH_SHORT
-
+                playAudio()
                 val toast = Toast.makeText(applicationContext, text, duration)
                 toast.show()
             }
@@ -87,7 +91,7 @@ class SwipeActivity : AppCompatActivity() {
             override fun onCardSwipedRight(position: Int) {
                 val text = "Swiped Right!"
                 val duration = Toast.LENGTH_SHORT
-
+                playAudio()
                 val toast = Toast.makeText(applicationContext, text, duration)
                 toast.show()
 
@@ -121,6 +125,19 @@ class SwipeActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+    }
+
+    private fun playAudio(){
+        val audioUrl = "https://www.fesliyanstudios.com/play-mp3/7756"
+        mediaPlayer = MediaPlayer()
+        mediaPlayer!!.setAudioStreamType(AudioManager.STREAM_MUSIC)
+        try{
+            mediaPlayer!!.setDataSource(audioUrl)
+            mediaPlayer!!.prepare()
+            mediaPlayer!!.start()
+        } catch(e: IOException){
+            e.printStackTrace()
+        }
     }
 
 }
