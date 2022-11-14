@@ -34,7 +34,11 @@ class FindRestaurantActivity : AppCompatActivity(), RestaurantCardAdapter.OnItem
                     startActivity(Intent(this,MainActivity::class.java))
                 }
                 R.id.swipe -> {
-                    startActivity(Intent(this,SwipeActivity::class.java))
+                    val text = "Cannot go back to swiping! Please go back to home and start over"
+                    val duration = Toast.LENGTH_LONG
+
+                    val toast = Toast.makeText(applicationContext, text, duration)
+                    toast.show()
                 }
                 R.id.restaurants -> {
                     startActivity(Intent(this,FindRestaurantActivity::class.java))

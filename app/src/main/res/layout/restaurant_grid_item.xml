@@ -38,7 +38,10 @@
             android:layout_marginTop="32dp"
             android:gravity="center"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-            android:textSize="24sp"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="12sp"
+            android:autoSizeMaxTextSize="24sp"
+            android:autoSizeStepGranularity="2sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Casa de Mariscos" />

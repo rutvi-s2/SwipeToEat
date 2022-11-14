@@ -43,14 +43,15 @@
                 android:layout_height="55dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/ic_baseline_cancel_64" />
+                android:rotation="180"
+                app:srcCompat="@drawable/ic_baseline_arrow_left_alt_128" />
 
             <ImageView
                 android:layout_width="64dp"
                 android:layout_height="55dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/ic_baseline_check_circle_24" />
+                app:srcCompat="@drawable/ic_baseline_arrow_right_alt_128" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
