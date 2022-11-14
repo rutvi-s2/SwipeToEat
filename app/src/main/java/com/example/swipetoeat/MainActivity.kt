@@ -148,7 +148,13 @@ class MainActivity : AppCompatActivity()  {
 
                 val toast = Toast.makeText(applicationContext, text, duration)
                 toast.show()
-            } else {
+            } else if(binding.location.text.length != 5) {
+                val text = "Incorrect Zipcode length"
+                val duration = Toast.LENGTH_SHORT
+
+                val toast = Toast.makeText(applicationContext, text, duration)
+                toast.show()
+            }else {
                 if (spinnerLabel.isEmpty()) {
                     val text = "You did not enter a cuisine. All will be included in search."
                     val duration = Toast.LENGTH_SHORT
