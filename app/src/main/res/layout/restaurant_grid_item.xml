@@ -13,10 +13,6 @@
         android:layout_width="400dp"
         android:layout_height="163dp">
 
-        <!--        imageView for restaurant image to appear in the restaurant card-->
-
-        <!--        textView for restaurant name to appear in the restaurant card-->
-
         <ImageView
             android:id="@+id/restaurant_grid_image"
             android:layout_width="191dp"
@@ -32,38 +28,49 @@
 
         <TextView
             android:id="@+id/restaurant_grid_name"
-            android:layout_width="115dp"
-            android:layout_height="75dp"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="32dp"
-            android:gravity="center"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-            android:autoSizeTextType="uniform"
-            android:autoSizeMinTextSize="12sp"
+            android:layout_width="175dp"
+            android:layout_height="69dp"
             android:autoSizeMaxTextSize="24sp"
+            android:autoSizeMinTextSize="12sp"
             android:autoSizeStepGranularity="2sp"
+            android:autoSizeTextType="uniform"
+            android:gravity="center"
+            android:scaleType="centerCrop"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.071"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.18"
             tools:text="Casa de Mariscos" />
 
         <TextView
             android:id="@+id/restaurant_grid_distance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="112dp"
-            android:layout_marginTop="16dp"
+            android:layout_width="81dp"
+            android:layout_height="29dp"
+            android:gravity="center"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.203"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/restaurant_grid_hours"
+            app:layout_constraintVertical_bias="0.947"
             tools:text="3 miles" />
 
         <TextView
             android:id="@+id/restaurant_grid_hours"
             android:layout_width="130dp"
             android:layout_height="18dp"
-            android:layout_marginStart="28dp"
             android:gravity="center"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.148"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/restaurant_grid_name"
+            app:layout_constraintVertical_bias="0.186"
             tools:text="10:00am - 10:00pm" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

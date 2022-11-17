@@ -9,7 +9,6 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="8dp"
         app:cardElevation="4dp"
         app:cardCornerRadius="4dp">
 
@@ -23,7 +22,6 @@
                 android:id="@+id/restaurant_grid_image"
                 android:layout_width="394dp"
                 android:layout_height="283dp"
-                android:layout_marginTop="38dp"
                 android:contentDescription="@string/restaurant_grid_image"
                 android:scaleType="centerCrop"
                 app:layout_constraintBottom_toBottomOf="parent"
