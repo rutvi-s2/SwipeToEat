@@ -49,34 +49,6 @@ class SwipeActivity : AppCompatActivity() {
         }
         binding.desiredCuisine.text = displayCuisine
 
-        // navigation bar
-//        binding.bottomNavigationBar.selectedItemId = R.id.swipe
-//        binding.bottomNavigationBar.setOnItemSelectedListener {
-//            when (it.itemId) {
-//                // Takes user to the home page
-//                R.id.home -> {
-//                    startActivity(Intent(this,MainActivity::class.java))
-//                }
-//                R.id.swipe -> {
-//                    startActivity(Intent(this,SwipeActivity::class.java))
-//                }
-//                R.id.restaurants -> {
-//                    if (DataSource.swipedRightRestaurants.isEmpty()) {
-//                        val text = "You have not swiped right on any meals yet!"
-//                        val duration = Toast.LENGTH_SHORT
-//
-//                        val toast = Toast.makeText(applicationContext, text, duration)
-//                        toast.show()
-//                    } else {
-//                        startActivity(Intent(this,FindRestaurantActivity::class.java))
-//                    }
-//                }
-//                else -> {
-//                }
-//            }
-//            true
-//        }
-
 
         koloda = findViewById(R.id.koloda)
 
