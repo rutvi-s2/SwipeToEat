@@ -59,28 +59,26 @@ class MainActivity : AppCompatActivity()  {
 
 
 
-        val cuisines: MutableList<String> = DataSource.cuisines
-
-        val retrofit = Retrofit.Builder().baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create()).build()
-        val yelpService = retrofit.create(YelpService::class.java)
-        yelpService.searchCuisines("Bearer $API_KEY").enqueue(object : Callback<YelpSearchResultCuisine> {
-            override fun onResponse(call: Call<YelpSearchResultCuisine>, response: Response<YelpSearchResultCuisine>) {
-                Log.i(TAG, "onResponse $response")
-                val body = response.body()
-                if (body == null) {
-                    Log.w(TAG, "Did not receive valid response body from Yelp API ... exit")
-                    return
-                }
-                cuisines.addAll(body.populateCuisines())
-                DataSource.cuisines = cuisines
-                Log.d("cuisinesList", DataSource.cuisines.toString())
-            }
-
-            override fun onFailure(call: Call<YelpSearchResultCuisine>, t: Throwable) {
-                Log.i(TAG, "onFailure $t")
-            }
-        })
+//        val retrofit = Retrofit.Builder().baseUrl(BASE_URL)
+//            .addConverterFactory(GsonConverterFactory.create()).build()
+//        val yelpService = retrofit.create(YelpService::class.java)
+//        yelpService.searchCuisines("Bearer $API_KEY").enqueue(object : Callback<YelpSearchResultCuisine> {
+//            override fun onResponse(call: Call<YelpSearchResultCuisine>, response: Response<YelpSearchResultCuisine>) {
+//                Log.i(TAG, "onResponse $response")
+//                val body = response.body()
+//                if (body == null) {
+//                    Log.w(TAG, "Did not receive valid response body from Yelp API ... exit")
+//                    return
+//                }
+////                cuisines.addAll(body.populateCuisines())
+////                DataSource.cuisines = cuisines
+//                Log.d("cuisinesList", DataSource.cuisines.toString())
+//            }
+//
+//            override fun onFailure(call: Call<YelpSearchResultCuisine>, t: Throwable) {
+//                Log.i(TAG, "onFailure $t")
+//            }
+//        })
 
 
         // Create an ArrayAdapter using the string array and a default spinner layout
@@ -90,19 +88,11 @@ class MainActivity : AppCompatActivity()  {
             android.R.layout.simple_spinner_item,
             DataSource.cuisines
         )
-//        cuisineAdapter.also { adapter ->
-//            // Specify the layout to use when the list of choices appears
-//            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-//            // Apply the adapter to the spinner
-//            binding.desiredCuisineSpinner.adapter = adapter
-//        }
-        // set simple layout resource file
-        // for each item of spinner
+        // set simple layout resource file for each item of spinner
         cuisineAdapter.setDropDownViewResource(
             android.R.layout.simple_spinner_dropdown_item)
 
-        // Set the ArrayAdapter (ad) data on the
-        // Spinner which binds data to spinner
+        // Set the ArrayAdapter data on the spinner
         binding.desiredCuisineSpinner.adapter = cuisineAdapter
 
 
@@ -115,8 +105,8 @@ class MainActivity : AppCompatActivity()  {
                 // first get the cuisine that the user selected
                 chosenCuisine = parent?.getItemAtPosition(position).toString()
                 // now set it to the alias so we can send it in the YELP request
-                spinnerLabel =
-                    DataSource.cuisinesWithAlias.find { it.title == chosenCuisine }?.alias ?: "no alias found"
+                val indexOfAlias = DataSource.cuisines.indexOf(chosenCuisine)
+                spinnerLabel = DataSource.cuisineAlias[indexOfAlias]
             }
 
         }
@@ -174,7 +164,7 @@ class MainActivity : AppCompatActivity()  {
                 GlobalScope.launch() {
                     // function call to retrieve list of restaurants from yelp
                     yelpAPIForRestaurants()
-                    delay(1000L)
+                    delay(1500L)
                     val intent = Intent(this@MainActivity, SwipeActivity::class.java)
                     intent.putExtra("chosen cuisine", chosenCuisine)
                     startActivity(intent)

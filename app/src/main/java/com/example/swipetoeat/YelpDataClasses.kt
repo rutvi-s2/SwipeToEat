@@ -10,18 +10,7 @@ data class YelpSearchResult(
 
 data class YelpSearchResultCuisine(
     @SerializedName("categories") val cuisines: List<YelpCategory>
-) {
-    fun populateCuisines() : MutableList<String> {
-        var restaurantCuisines: MutableList<String> = mutableListOf()
-        for (c in cuisines) {
-            if (c.parentAliases.isNotEmpty() && c.parentAliases[0] == "restaurants") {
-                restaurantCuisines.add(c.title)
-                DataSource.cuisinesWithAlias.add(c)
-            }
-        }
-        return restaurantCuisines
-    }
-}
+)
 
 data class YelpRestaurant(
     //no need to specify serialized name if name of parameter in the object exactly matches var name in Kotlin

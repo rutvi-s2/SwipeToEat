@@ -104,6 +104,7 @@ class SwipeActivity : AppCompatActivity() {
             list = (DataSource.restaurants).toCollection(mutableListOf())
             adapter = SwipeAdapter(this, list)
             koloda.adapter = adapter
+            DataSource.swipedRightRestaurants.clear()
 
             Log.d("the second length is", list.size.toString())
         }
