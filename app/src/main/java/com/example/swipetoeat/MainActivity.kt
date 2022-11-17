@@ -90,12 +90,20 @@ class MainActivity : AppCompatActivity()  {
             android.R.layout.simple_spinner_item,
             DataSource.cuisines
         )
-        cuisineAdapter.also { adapter ->
-            // Specify the layout to use when the list of choices appears
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            // Apply the adapter to the spinner
-            binding.desiredCuisineSpinner.adapter = adapter
-        }
+//        cuisineAdapter.also { adapter ->
+//            // Specify the layout to use when the list of choices appears
+//            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+//            // Apply the adapter to the spinner
+//            binding.desiredCuisineSpinner.adapter = adapter
+//        }
+        // set simple layout resource file
+        // for each item of spinner
+        cuisineAdapter.setDropDownViewResource(
+            android.R.layout.simple_spinner_dropdown_item)
+
+        // Set the ArrayAdapter (ad) data on the
+        // Spinner which binds data to spinner
+        binding.desiredCuisineSpinner.adapter = cuisineAdapter
 
 
         binding.desiredCuisineSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
@@ -182,44 +190,44 @@ class MainActivity : AppCompatActivity()  {
 
         //}
 
-        // Moves the user to the second page to start swiping
-        binding.bottomNavigationBar.selectedItemId = R.id.home
-        binding.bottomNavigationBar.setOnItemSelectedListener {
-            when (it.itemId) {
-                // Takes user to the home page
-                R.id.home -> {
-                    startActivity(Intent(this,MainActivity::class.java))
-                }
-                R.id.swipe -> {
-                    // spinnerLabel.isEmpty() || binding.location.text.isEmpty()
-                    if (DataSource.restaurants.isEmpty()) {
-                        binding.bottomNavigationBar.selectedItemId = R.id.home
-                        val text = "Please enter information and click on start swiping."
-                        val duration = Toast.LENGTH_SHORT
-
-                        val toast = Toast.makeText(applicationContext, text, duration)
-                        toast.show()
-                    } else {
-                        val intent = Intent(this,SwipeActivity::class.java)
-                        startActivity(intent)
-                    }
-                }
-                R.id.restaurants -> {
-                    if (DataSource.swipedRightRestaurants.isEmpty()) {
-                        val text = "You have not swiped right on any meals yet!"
-                        val duration = Toast.LENGTH_SHORT
-
-                        val toast = Toast.makeText(applicationContext, text, duration)
-                        toast.show()
-                    } else {
-                        startActivity(Intent(this,FindRestaurantActivity::class.java))
-                    }
-                }
-                else -> {
-                }
-            }
-            true
-        }
+//        // navigation bar
+//        binding.bottomNavigationBar.selectedItemId = R.id.home
+//        binding.bottomNavigationBar.setOnItemSelectedListener {
+//            when (it.itemId) {
+//                // Takes user to the home page
+//                R.id.home -> {
+//                    startActivity(Intent(this,MainActivity::class.java))
+//                }
+//                R.id.swipe -> {
+//                    // spinnerLabel.isEmpty() || binding.location.text.isEmpty()
+//                    if (DataSource.restaurants.isEmpty()) {
+//                        binding.bottomNavigationBar.selectedItemId = R.id.home
+//                        val text = "Please enter information and click on start swiping."
+//                        val duration = Toast.LENGTH_SHORT
+//
+//                        val toast = Toast.makeText(applicationContext, text, duration)
+//                        toast.show()
+//                    } else {
+//                        val intent = Intent(this,SwipeActivity::class.java)
+//                        startActivity(intent)
+//                    }
+//                }
+//                R.id.restaurants -> {
+//                    if (DataSource.swipedRightRestaurants.isEmpty()) {
+//                        val text = "You have not swiped right on any meals yet!"
+//                        val duration = Toast.LENGTH_SHORT
+//
+//                        val toast = Toast.makeText(applicationContext, text, duration)
+//                        toast.show()
+//                    } else {
+//                        startActivity(Intent(this,FindRestaurantActivity::class.java))
+//                    }
+//                }
+//                else -> {
+//                }
+//            }
+//            true
+//        }
         val selectTimeButton = findViewById<Button>(R.id.desiredTimeBtn)
         val formatter = SimpleDateFormat("MMM dd yyyy", Locale.US)
         val timeFormatter = SimpleDateFormat("hh:mm a", Locale.US)

@@ -26,28 +26,30 @@ class FindRestaurantActivity : AppCompatActivity(), RestaurantCardAdapter.OnItem
         setContentView(R.layout.activity_find_restaurant)
         binding = ActivityFindRestaurantBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.bottomNavigationBar.selectedItemId = R.id.restaurants
-        binding.bottomNavigationBar.setOnItemSelectedListener {
-            when (it.itemId) {
-                // Takes user to the home page
-                R.id.home -> {
-                    startActivity(Intent(this,MainActivity::class.java))
-                }
-                R.id.swipe -> {
-                    val text = "Cannot go back to swiping! Please go back to home and start over"
-                    val duration = Toast.LENGTH_LONG
 
-                    val toast = Toast.makeText(applicationContext, text, duration)
-                    toast.show()
-                }
-                R.id.restaurants -> {
-                    startActivity(Intent(this,FindRestaurantActivity::class.java))
-                }
-                else -> {
-                }
-            }
-            true
-        }
+        // navigation bar
+//        binding.bottomNavigationBar.selectedItemId = R.id.restaurants
+//        binding.bottomNavigationBar.setOnItemSelectedListener {
+//            when (it.itemId) {
+//                // Takes user to the home page
+//                R.id.home -> {
+//                    startActivity(Intent(this,MainActivity::class.java))
+//                }
+//                R.id.swipe -> {
+//                    val text = "Cannot go back to swiping! Please go back to home and start over"
+//                    val duration = Toast.LENGTH_LONG
+//
+//                    val toast = Toast.makeText(applicationContext, text, duration)
+//                    toast.show()
+//                }
+//                R.id.restaurants -> {
+//                    startActivity(Intent(this,FindRestaurantActivity::class.java))
+//                }
+//                else -> {
+//                }
+//            }
+//            true
+//        }
         binding.gridRecyclerView.adapter = RestaurantCardAdapter(this, this)
 
         // Specify fixed size to improve performance
@@ -56,8 +58,7 @@ class FindRestaurantActivity : AppCompatActivity(), RestaurantCardAdapter.OnItem
 
 
         // when randomly generate button is clicked, we choose a restaurant for the user
-        val randomlyGenerate = findViewById<Button>(R.id.surprise_me_button)
-        randomlyGenerate.setOnClickListener {
+        binding.surpriseMeButton.setOnClickListener {
             if (DataSource.swipedRightRestaurants.isEmpty()) {
                 val text = "You have not swiped right on any meals yet!"
                 val duration = Toast.LENGTH_SHORT

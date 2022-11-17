@@ -21,24 +21,26 @@ class SurpriseMeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_surprise_me)
         binding = ActivitySurpriseMeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.bottomNavigationBar.selectedItemId = R.id.restaurants
-        binding.bottomNavigationBar.setOnItemSelectedListener {
-            when (it.itemId) {
-                // Takes user to the home page
-                R.id.home -> {
-                    startActivity(Intent(this,MainActivity::class.java))
-                }
-                R.id.swipe -> {
-                    startActivity(Intent(this,SwipeActivity::class.java))
-                }
-                R.id.restaurants -> {
-                    startActivity(Intent(this,FindRestaurantActivity::class.java))
-                }
-                else -> {
-                }
-            }
-            true
-        }
+
+        // navigation bar
+//        binding.bottomNavigationBar.selectedItemId = R.id.restaurants
+//        binding.bottomNavigationBar.setOnItemSelectedListener {
+//            when (it.itemId) {
+//                // Takes user to the home page
+//                R.id.home -> {
+//                    startActivity(Intent(this,MainActivity::class.java))
+//                }
+//                R.id.swipe -> {
+//                    startActivity(Intent(this,SwipeActivity::class.java))
+//                }
+//                R.id.restaurants -> {
+//                    startActivity(Intent(this,FindRestaurantActivity::class.java))
+//                }
+//                else -> {
+//                }
+//            }
+//            true
+//        }
         val extras = intent.extras
         val restaurant: YelpRestaurant = DataSource.swipedRightRestaurants[extras?.getInt("restaurantIndex")!!]
         binding.restaurantGridName.text = restaurant.name
