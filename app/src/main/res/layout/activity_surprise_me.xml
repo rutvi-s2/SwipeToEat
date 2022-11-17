@@ -20,8 +20,8 @@
 
             <ImageView
                 android:id="@+id/restaurant_grid_image"
-                android:layout_width="394dp"
-                android:layout_height="283dp"
+                android:layout_width="372dp"
+                android:layout_height="274dp"
                 android:contentDescription="@string/restaurant_grid_image"
                 android:scaleType="centerCrop"
                 app:layout_constraintBottom_toBottomOf="parent"
