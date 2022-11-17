@@ -28,7 +28,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/restaurant_grid_distance"
-                app:layout_constraintVertical_bias="0.477" />
+                app:layout_constraintVertical_bias="0.207" />
 
             <TextView
                 android:id="@+id/restaurant_grid_name"
@@ -53,14 +53,14 @@
                 android:id="@+id/restaurant_grid_distance"
                 android:layout_width="156dp"
                 android:layout_height="60dp"
+                android:gravity="center"
                 android:scaleType="centerCrop"
                 android:textSize="30sp"
-                android:gravity="center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/restaurant_grid_hours"
-                app:layout_constraintVertical_bias="0.077"
+                app:layout_constraintVertical_bias="0.039"
                 tools:text="3 miles" />
 
             <TextView
@@ -74,7 +74,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/restaurant_grid_name"
-                app:layout_constraintVertical_bias="0.077"
+                app:layout_constraintVertical_bias="0.042"
                 tools:text="10:00am - 10:00pm" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

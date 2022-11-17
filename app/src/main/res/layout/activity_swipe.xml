@@ -54,7 +54,7 @@
 
     <com.yalantis.library.Koloda
         android:id="@+id/koloda"
-        android:layout_width="428dp"
+        android:layout_width="393dp"
         android:layout_height="500dp"
         android:scaleType="centerCrop"
         app:koloda_card_layout="@layout/item_koloda"
