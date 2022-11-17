@@ -63,7 +63,7 @@ class SwipeActivity : AppCompatActivity() {
             override fun onCardSwipedLeft(position: Int) {
                 val text = "Swiped Left!"
                 val duration = Toast.LENGTH_SHORT
-                playAudio()
+//                playAudio()
                 countSwiped++
                 val toast = Toast.makeText(applicationContext, text, duration)
                 toast.show()
@@ -72,7 +72,7 @@ class SwipeActivity : AppCompatActivity() {
             override fun onCardSwipedRight(position: Int) {
                 val text = "Swiped Right!"
                 val duration = Toast.LENGTH_SHORT
-                playAudio()
+//                playAudio()
                 countSwiped++
                 val toast = Toast.makeText(applicationContext, text, duration)
                 toast.show()

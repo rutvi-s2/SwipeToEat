@@ -27,7 +27,7 @@ class SwipeAdapter(
 
 
     override fun getCount(): Int {
-        return 20
+        return DataSource.restaurants.size
     }
 
     override fun getItem(i: Int): Any? {
