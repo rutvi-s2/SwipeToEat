@@ -21,6 +21,9 @@ import android.provider.ContactsContract
 import android.util.Log
 import androidx.lifecycle.Transformations.map
 import com.example.swipetoeat.adapter.SwipeAdapter
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.io.IOException
 
 
@@ -61,18 +64,24 @@ class SwipeActivity : AppCompatActivity() {
         koloda.kolodaListener = object : KolodaListener {
 
             override fun onCardSwipedLeft(position: Int) {
-                val text = "Swiped Left!"
+                val text = "DISLIKE!"
                 val duration = Toast.LENGTH_SHORT
-//                playAudio()
+                GlobalScope.launch() {
+                    playAudio()
+                    delay(1500L)
+                }
                 countSwiped++
                 val toast = Toast.makeText(applicationContext, text, duration)
                 toast.show()
             }
 
             override fun onCardSwipedRight(position: Int) {
-                val text = "Swiped Right!"
+                val text = "LIKE!"
                 val duration = Toast.LENGTH_SHORT
-//                playAudio()
+                GlobalScope.launch() {
+                    playAudio()
+                    delay(1500L)
+                }
                 countSwiped++
                 val toast = Toast.makeText(applicationContext, text, duration)
                 toast.show()

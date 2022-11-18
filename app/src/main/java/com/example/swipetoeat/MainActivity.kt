@@ -36,7 +36,7 @@ import java.util.*
 //SwipeToEat
 private const val TAG = "MainActivity"
 private const val BASE_URL = "https://api.yelp.com/v3/"
-private const val API_KEY = "u0xY7xJPFNwzMdqfDLljz3N1pbhesJ7WEFt8exp9A0-G8mMDEj2DJjCY6u4RWdly7zs1GbYiJ4oaIfjgOAKdSyC0qhw_zexcKTp1hCaaAfhLiE_tuRr2ioPmEfliY3Yx"
+private const val API_KEY = "-N__kCIaHXEKvFd2-HRBMdMoBDpQZhrelGNssS0wRMpeKnGo5oinLGXWjZZfcGl8DtZksQ4ZgcPnyNoyzwSCuA3XuvWwvyfsgo5FB95cL4cnDqEEWw27agn6m9t2Y3Yx"
 class MainActivity : AppCompatActivity()  {
     private lateinit var binding : ActivityMainBinding
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
@@ -131,6 +131,7 @@ class MainActivity : AppCompatActivity()  {
                     }
                     restaurants.addAll(body.restaurants)
                     DataSource.restaurants = restaurants
+                    Log.i("we get in here", "omg")
                 }
 
                 override fun onFailure(call: Call<YelpSearchResult>, t: Throwable) {
