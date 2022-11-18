@@ -54,6 +54,15 @@ class FindRestaurantActivity : AppCompatActivity(), RestaurantCardAdapter.OnItem
             }
         }
 
+        // start over button
+        binding.startOver?.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            DataSource.restaurants.clear()
+            DataSource.swipedRightRestaurants.clear()
+        }
+
+
     }
 
     // when RestaurantCardAdapter is clicked, send the data over the intent and start the intent
@@ -74,11 +83,6 @@ class FindRestaurantActivity : AppCompatActivity(), RestaurantCardAdapter.OnItem
             ).show()
             e.printStackTrace()
         }
-//        val intent = Intent(this,YelpActivity::class.java)
-//        intent.putExtra("restaurant_name", restaurants[position].name)
-//        intent.putExtra("movie_review", movies[position].review)
-//        intent.putExtra("movie_rating", movies[position].rating)
-//        startActivity(intent)
     }
 
 }

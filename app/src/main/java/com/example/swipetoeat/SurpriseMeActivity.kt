@@ -56,5 +56,12 @@ class SurpriseMeActivity : AppCompatActivity() {
                 e.printStackTrace()
             }
         }
+
+
+        // back button
+        binding.back?.setOnClickListener {
+            val intent = Intent(this, FindRestaurantActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

@@ -51,38 +51,13 @@ class MainActivity : AppCompatActivity()  {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val buttonToSwipePage = findViewById<Button>(R.id.start_swiping)
-        buttonToSwipePage.setOnClickListener {
-            val intent = Intent(this, SwipeActivity::class.java)
-            startActivity(intent)
-        }
 
-
-
-//        val retrofit = Retrofit.Builder().baseUrl(BASE_URL)
-//            .addConverterFactory(GsonConverterFactory.create()).build()
-//        val yelpService = retrofit.create(YelpService::class.java)
-//        yelpService.searchCuisines("Bearer $API_KEY").enqueue(object : Callback<YelpSearchResultCuisine> {
-//            override fun onResponse(call: Call<YelpSearchResultCuisine>, response: Response<YelpSearchResultCuisine>) {
-//                Log.i(TAG, "onResponse $response")
-//                val body = response.body()
-//                if (body == null) {
-//                    Log.w(TAG, "Did not receive valid response body from Yelp API ... exit")
-//                    return
-//                }
-////                cuisines.addAll(body.populateCuisines())
-////                DataSource.cuisines = cuisines
-//                Log.d("cuisinesList", DataSource.cuisines.toString())
-//            }
-//
-//            override fun onFailure(call: Call<YelpSearchResultCuisine>, t: Throwable) {
-//                Log.i(TAG, "onFailure $t")
-//            }
-//        })
+        // clear lists
+        DataSource.restaurants.clear()
+        DataSource.swipedRightRestaurants.clear()
 
 
         // Create an ArrayAdapter using the string array and a default spinner layout
-//        ArrayAdapter<YelpCategory>() adapter_category = new ArrayAdapter<YelpCategory>(this, android.R.layout.simple_spinner_item, cuisines)
         val cuisineAdapter: ArrayAdapter<String> = ArrayAdapter<String>(
             this,
             android.R.layout.simple_spinner_item,

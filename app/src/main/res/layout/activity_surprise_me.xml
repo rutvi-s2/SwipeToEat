@@ -26,14 +26,15 @@
                 android:scaleType="centerCrop"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.41"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/restaurant_grid_distance"
-                app:layout_constraintVertical_bias="0.207" />
+                app:layout_constraintVertical_bias="0.118" />
 
             <TextView
                 android:id="@+id/restaurant_grid_name"
-                android:layout_width="401dp"
-                android:layout_height="180dp"
+                android:layout_width="424dp"
+                android:layout_height="131dp"
                 android:autoSizeMaxTextSize="40sp"
                 android:autoSizeMinTextSize="30sp"
                 android:autoSizeStepGranularity="2sp"
@@ -51,16 +52,17 @@
 
             <TextView
                 android:id="@+id/restaurant_grid_distance"
-                android:layout_width="156dp"
-                android:layout_height="60dp"
+                android:layout_width="293dp"
+                android:layout_height="67dp"
                 android:gravity="center"
                 android:scaleType="centerCrop"
                 android:textSize="30sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/restaurant_grid_hours"
-                app:layout_constraintVertical_bias="0.039"
+                app:layout_constraintVertical_bias="0.0"
                 tools:text="3 miles" />
 
             <TextView
@@ -72,10 +74,23 @@
                 android:textSize="30sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.494"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/restaurant_grid_name"
-                app:layout_constraintVertical_bias="0.042"
+                app:layout_constraintVertical_bias="0.015"
                 tools:text="10:00am - 10:00pm" />
+
+            <Button
+                android:id="@+id/back"
+                android:layout_width="130dp"
+                android:layout_height="71dp"
+                android:scaleType="centerCrop"
+                android:text="Back"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.073"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintVertical_bias="0.45" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
