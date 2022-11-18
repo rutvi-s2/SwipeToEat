@@ -15,14 +15,15 @@
         android:id="@+id/letSwipeName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:scaleType="centerCrop"
         android:text="Swipe to Eat"
         android:textAppearance="@style/TextAppearance.AppCompat.Display2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.009" />
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <TextView
         android:id="@+id/locationName"
@@ -33,10 +34,10 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/letSwipeName"
-        app:layout_constraintVertical_bias="0.13" />
-
+        app:layout_constraintVertical_bias="0.084" />
 
     <EditText
         android:id="@+id/location"
@@ -81,14 +82,15 @@
 
     <Spinner
         android:id="@+id/desiredCuisineSpinner"
-        android:layout_width="365dp"
-        android:layout_height="43dp"
+        android:layout_width="310dp"
+        android:layout_height="58dp"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/desiredCuisineName"
-        app:layout_constraintVertical_bias="0.065" />
+        app:layout_constraintVertical_bias="0.02" />
 
     <TextView
         android:id="@+id/desiredTimeName"
@@ -113,6 +115,7 @@
         android:ems="10"
         android:scaleType="centerCrop"
         android:text="Select Time"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
