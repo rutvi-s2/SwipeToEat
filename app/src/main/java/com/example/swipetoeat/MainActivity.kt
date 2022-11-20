@@ -33,7 +33,6 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-//SwipeToEat
 private const val TAG = "MainActivity"
 private const val BASE_URL = "https://api.yelp.com/v3/"
 private const val API_KEY = "-N__kCIaHXEKvFd2-HRBMdMoBDpQZhrelGNssS0wRMpeKnGo5oinLGXWjZZfcGl8DtZksQ4ZgcPnyNoyzwSCuA3XuvWwvyfsgo5FB95cL4cnDqEEWw27agn6m9t2Y3Yx"
@@ -42,8 +41,8 @@ class MainActivity : AppCompatActivity()  {
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     var spinnerLabel : String = ""
     var chosenCuisine : String = ""
-    var timeInput : Int = (System.currentTimeMillis()/1000).toInt()
-    var timeInputStr : String = ""
+    private var timeInput : Int = (System.currentTimeMillis()/1000).toInt()
+    private var timeInputStr : String = ""
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,7 +51,7 @@ class MainActivity : AppCompatActivity()  {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // clear lists
+        // clear lists everytime the user starts on home screen
         DataSource.restaurants.clear()
         DataSource.swipedRightRestaurants.clear()
 
@@ -71,9 +70,9 @@ class MainActivity : AppCompatActivity()  {
         binding.desiredCuisineSpinner.adapter = cuisineAdapter
 
 
+        // get the cuisine the user chooses from the spinner
         binding.desiredCuisineSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onNothingSelected(parent: AdapterView<*>?) {
-
             }
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
@@ -87,6 +86,7 @@ class MainActivity : AppCompatActivity()  {
         }
 
 
+        // function that performs the yelp API request depending on user input
         fun yelpAPIForRestaurants() {
             val restaurants: MutableList<YelpRestaurant> = DataSource.restaurants
 
@@ -115,46 +115,36 @@ class MainActivity : AppCompatActivity()  {
             })
         }
 
+
         binding.startSwiping.setOnClickListener {
+            // ensure the user enters valid information for API request
             if (binding.location.text.isEmpty()) {
                 val text = "Please enter information."
                 val duration = Toast.LENGTH_SHORT
 
                 val toast = Toast.makeText(applicationContext, text, duration)
                 toast.show()
-            } else if(binding.location.text.length != 5) {
+            } else if (binding.location.text.length != 5) {
                 val text = "Incorrect Zipcode length"
                 val duration = Toast.LENGTH_SHORT
 
                 val toast = Toast.makeText(applicationContext, text, duration)
                 toast.show()
-            }else {
-                if (spinnerLabel.isEmpty()) {
-                    val text = "You did not enter a cuisine. All will be included in search."
-                    val duration = Toast.LENGTH_SHORT
-
-                    val toast = Toast.makeText(applicationContext, text, duration)
-                    toast.show()
-                }
+            } else {
                 // intent to go to start swiping page
-                GlobalScope.launch() {
+                GlobalScope.launch {
                     // function call to retrieve list of restaurants from yelp
                     yelpAPIForRestaurants()
                     delay(1500L)
                     val intent = Intent(this@MainActivity, SwipeActivity::class.java)
                     intent.putExtra("chosen cuisine", chosenCuisine)
                     startActivity(intent)
-
-
                 }
             }
         }
 
-        //binding.locationBtn.setOnClickListener {
-            fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
-            getCurrentLocation()
-
-        //}
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
+        getCurrentLocation()
 
 
         val selectTimeButton = findViewById<Button>(R.id.desiredTimeBtn)
@@ -162,8 +152,8 @@ class MainActivity : AppCompatActivity()  {
         val timeFormatter = SimpleDateFormat("hh:mm a", Locale.US)
         selectTimeButton.setOnClickListener{
             val now = Calendar.getInstance()
-            var date : String = ""
-            var time : String = ""
+            var date = ""
+            var time: String
             val timePicker = TimePickerDialog(this, TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->
                 val selectedTime = Calendar.getInstance()
                 selectedTime.set(Calendar.HOUR_OF_DAY, hourOfDay)
@@ -176,8 +166,8 @@ class MainActivity : AppCompatActivity()  {
                 }
 
                 val df = SimpleDateFormat("MMM dd yyyy hh:mm:ss.SSS zzz")
-                var my_dt : Date = df.parse(timeInputStr)
-                timeInput = (my_dt.getTime() / 1000).toInt()
+                val myDt : Date = df.parse(timeInputStr)
+                timeInput = (myDt.time / 1000).toInt()
 
                 Log.d("my time", timeInput.toString())
             },
@@ -211,31 +201,20 @@ class MainActivity : AppCompatActivity()  {
                     requestPermission()
                     return
                 }
-//                fusedLocationProviderClient.lastLocation.addOnCompleteListener(this){ task ->
-//                    val location: Location?=task.result
-//                    if(location == null){
-//                        Toast.makeText(this, "Exception: Location not fetched", Toast.LENGTH_SHORT).show()
-//                    } else{
-//                        val geocoder = Geocoder(this, Locale.getDefault())
-//                        val addresses: List<Address> = geocoder.getFromLocation(location.latitude, location.longitude, 1)
-//                        binding.location.setText((addresses.get(0).postalCode).toString())
-//                        Toast.makeText(this, ("zipcode" + (addresses.get(0).postalCode).toString()), Toast.LENGTH_SHORT).show()
-//                    }
-//                }
-                    val location: Location? = getLastKnownLocation()
-                    if(location == null){
-                        Toast.makeText(this, "Exception: Location not fetched", Toast.LENGTH_SHORT).show()
-                    } else{
-                        val geocoder = Geocoder(this, Locale.getDefault())
-                        val addresses: List<Address> = geocoder.getFromLocation(location.latitude, location.longitude, 1)
-                        binding.location.setText((addresses.get(0).postalCode).toString())
-                    }
-            }else {
+                val location: Location? = getLastKnownLocation()
+                if(location == null) {
+                    Toast.makeText(this, "Exception: Location not fetched", Toast.LENGTH_SHORT).show()
+                } else{
+                    val geocoder = Geocoder(this, Locale.getDefault())
+                    val addresses: List<Address> = geocoder.getFromLocation(location.latitude, location.longitude, 1)
+                    binding.location.setText((addresses[0].postalCode).toString())
+                }
+            } else {
                 Toast.makeText(this, "Turn on Location in Settings", Toast.LENGTH_SHORT).show()
                 val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
                 startActivity(intent)
             }
-        } else{
+        } else {
             requestPermission()
         }
     }
@@ -269,8 +248,8 @@ class MainActivity : AppCompatActivity()  {
     }
 
     private fun requestPermission(){
-        ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.ACCESS_COARSE_LOCATION,
-        android.Manifest.permission.ACCESS_FINE_LOCATION), PERMISSION_REQUEST_ACCESS_LOCATION)
+        ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION,
+        Manifest.permission.ACCESS_FINE_LOCATION), PERMISSION_REQUEST_ACCESS_LOCATION)
     }
 
     private fun isLocationEnabled(): Boolean{
@@ -284,9 +263,9 @@ class MainActivity : AppCompatActivity()  {
     }
     private fun checkPermissions(): Boolean{
         if(ActivityCompat.checkSelfPermission(this,
-            android.Manifest.permission.ACCESS_COARSE_LOCATION) ==
+            Manifest.permission.ACCESS_COARSE_LOCATION) ==
                 PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,
-            android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
+            Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
             return true
         }
         return false
