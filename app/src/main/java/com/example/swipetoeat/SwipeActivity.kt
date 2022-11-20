@@ -1,39 +1,27 @@
 package com.example.swipetoeat
 
-import com.yalantis.library.Koloda
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import java.util.ArrayList
-import android.widget.ImageButton
-import android.widget.Button
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
+import android.os.Bundle
+import android.os.Handler
+import android.util.Log
+import android.view.View
+import android.view.animation.AnimationUtils
+import android.widget.Button
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.example.swipetoeat.adapter.SwipeAdapter
 import com.example.swipetoeat.data.DataSource
 import com.example.swipetoeat.databinding.ActivitySwipeBinding
-import com.example.swipetoeat.model.Restaurant
+import com.yalantis.library.Koloda
 import com.yalantis.library.KolodaListener
-import android.graphics.Color
-import android.media.AudioManager
-import android.media.MediaPlayer
-import android.provider.ContactsContract
-import android.util.Log
-import androidx.lifecycle.Transformations.map
-import com.example.swipetoeat.adapter.SwipeAdapter
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import java.io.IOException
-
+import kotlinx.coroutines.*
 
 class SwipeActivity : AppCompatActivity() {
     private lateinit var adapter: SwipeAdapter
     private lateinit var list: MutableList<YelpRestaurant>
     private lateinit var koloda: Koloda
-    var mediaPlayer : MediaPlayer? = null
+//    var mediaPlayer : MediaPlayer? = null
     var countSwiped : Int = 0
-    //    lateinit var imageResourceBitmap: Bitmap
     private lateinit var binding : ActivitySwipeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,6 +41,7 @@ class SwipeActivity : AppCompatActivity() {
         binding.desiredCuisine.text = displayCuisine
 
 
+
         koloda = findViewById(R.id.koloda)
 
         list = (DataSource.restaurants).toCollection(mutableListOf())
@@ -61,12 +50,31 @@ class SwipeActivity : AppCompatActivity() {
         Log.d("the first length is", list.size.toString())
 
 
+
         koloda.kolodaListener = object : KolodaListener {
 
             override fun onCardSwipedLeft(position: Int) {
                 val text = "DISLIKE!"
                 val duration = Toast.LENGTH_SHORT
 //                playAudio()
+
+                // fade in
+                binding.thumbsDown.visibility = View.VISIBLE
+                //loading our custom made animations
+                var animation = AnimationUtils.loadAnimation(this@SwipeActivity, R.anim.fade_in)
+                //starting the animation
+                binding.thumbsDown.startAnimation(animation)
+
+
+                // fade out
+                animation = AnimationUtils.loadAnimation(this@SwipeActivity , R.anim.fade_out)
+                binding.thumbsDown.startAnimation(animation)
+                //textview will be invisible after the specified amount
+                // of time elapses, here it is 1000 milliseconds
+                Handler().postDelayed({
+                    binding.thumbsDown.visibility = View.GONE
+                }, 1000)
+
                 countSwiped++
                 val toast = Toast.makeText(applicationContext, text, duration)
                 toast.show()
@@ -75,7 +83,29 @@ class SwipeActivity : AppCompatActivity() {
             override fun onCardSwipedRight(position: Int) {
                 val text = "LIKE!"
                 val duration = Toast.LENGTH_SHORT
+
+                // fade in
+                binding.thumbsUp.bringToFront()
+                binding.thumbsUp.visibility = View.VISIBLE
+                //loading our custom made animations
+                var animation = AnimationUtils.loadAnimation(this@SwipeActivity, R.anim.fade_in)
+                //starting the animation
+                binding.thumbsUp.startAnimation(animation)
+
+
+                // fade out
+                animation = AnimationUtils.loadAnimation(this@SwipeActivity , R.anim.fade_out)
+                binding.thumbsUp.startAnimation(animation)
+                //textview will be invisible after the specified amount
+                // of time elapses, here it is 1000 milliseconds
+                Handler().postDelayed({
+                    binding.thumbsUp.visibility = View.GONE
+                }, 1000)
+
 //                playAudio()
+//                MyService().onCreate()
+
+
                 countSwiped++
                 val toast = Toast.makeText(applicationContext, text, duration)
                 toast.show()
@@ -86,8 +116,8 @@ class SwipeActivity : AppCompatActivity() {
             }
 
         }
+        
 
-//        imageResourceBitmap = BitmapFactory.decodeResource(resources, R.drawable.casa_de_mariscos_enchiladas);
 
         // Intent takes user to the find restaurants page once they are done swiping
         val restaurantsPage = findViewById<Button>(R.id.done_swiping)
@@ -114,17 +144,21 @@ class SwipeActivity : AppCompatActivity() {
 
     }
 
-    private fun playAudio(){
-        val audioUrl = "https://www.fesliyanstudios.com/play-mp3/7756"
-        mediaPlayer = MediaPlayer()
-        mediaPlayer!!.setAudioStreamType(AudioManager.STREAM_MUSIC)
-        try{
-            mediaPlayer!!.setDataSource(audioUrl)
-            mediaPlayer!!.prepare()
-            mediaPlayer!!.start()
-        } catch(e: IOException){
-            e.printStackTrace()
-        }
-    }
+//    fun playAudio()  {
+//        val audioUrl = "https://www.fesliyanstudios.com/play-mp3/7756"
+//        mediaPlayer = MediaPlayer()
+//        mediaPlayer!!.setAudioStreamType(AudioManager.STREAM_MUSIC)
+//        try{
+//            mediaPlayer!!.setDataSource(audioUrl)
+//            mediaPlayer!!.prepare()
+////            mediaPlayer!!.start()
+//
+//        } catch(e: IOException){
+//            e.printStackTrace()
+//        }
+//    }
+
 
 }
+
+
