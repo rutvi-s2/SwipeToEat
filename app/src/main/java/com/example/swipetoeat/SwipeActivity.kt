@@ -9,12 +9,14 @@ import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.swipetoeat.FindRestaurantActivity
+import com.example.swipetoeat.R
+import com.example.swipetoeat.YelpRestaurant
 import com.example.swipetoeat.adapter.SwipeAdapter
 import com.example.swipetoeat.data.DataSource
 import com.example.swipetoeat.databinding.ActivitySwipeBinding
 import com.yalantis.library.Koloda
 import com.yalantis.library.KolodaListener
-import kotlinx.coroutines.*
 
 class SwipeActivity : AppCompatActivity() {
     private lateinit var adapter: SwipeAdapter
